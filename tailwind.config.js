@@ -3,16 +3,16 @@ module.exports = {
     theme: {
         extend: {
             colors: {
-                dark_bg: '#18181b',
-                dark_card: '#28282b',
-                dark_border: '#36363a',
-                dark_spacer_border: '#414145',
-                dark_hover_border: '#48484c',
+                dark_bg: '#161617',
+                dark_card: '#28282a',
+                dark_border: '#363638',
+                dark_spacer_border: '#414143',
+                dark_hover_border: '#48484a',
                 dark_inset_card: '#1e1e20',
-                dark_inset_border: '#30302d',
+                dark_inset_border: '#303032',
                 dark_text_primary: '#c1c1c3',
                 dark_primary: '#059669',
-                dark_secondary: '#04714F',
+                dark_secondary: '#04714f',
             },
             fontFamily: {
                 primary: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],

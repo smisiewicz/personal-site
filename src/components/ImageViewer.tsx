@@ -39,14 +39,14 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ images, onClose }) => {
                     {/* Navigation buttons */}
                     <button
                         onClick={goBack}
-                        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-3"
+                        className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-dark_spacer_border border border-dark_hover_border rounded-full p-3"
                     >
                         <PiArrowLeftThin className="text-3xl" />
                     </button>
 
                     <button
                         onClick={goForward}
-                        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white bg-gray-800 rounded-full p-3"
+                        className="absolute right-4 top-1/2 transform -translate-y-1/2 bg-dark_spacer_border border border-dark_hover_border rounded-full p-3"
                     >
                         <PiArrowRightThin className="text-3xl" />
                     </button>
