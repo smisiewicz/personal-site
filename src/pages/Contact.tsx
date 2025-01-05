@@ -4,34 +4,95 @@ import qrCode from '../assets/contact-form-qr.svg'
 
 import axios from 'axios'
 
+interface FormData {
+    name: string
+    email: string
+    message: string
+}
+
+interface ValidationErrors {
+    name?: string
+    email?: string
+    message?: string
+}
+
 const Contact = () => {
     const [isQrLoaded, setIsQrLoaded] = useState(false)
-    const [contactName, setContactName] = useState('')
-    const [email, setEmail] = useState('')
-    const [message, setMessage] = useState('')
-    const [status, setStatus] = useState('')
 
-    const inputStyle =
-        'bg-dark_bg border border-dark_border rounded-md focus:ring-0 focus:border-dark_hover_border focus:outline-none'
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        message: '',
+    })
 
-    const handleSubmit = async (e: FormEvent) => {
-        e.preventDefault()
+    const [errors, setErrors] = useState<ValidationErrors>({})
+    const [status, setStatus] = useState<string | null>(null)
 
-        const data = {
-            email,
-            subject: 'Personal Site Contact Form from: ' + contactName,
-            message: 'Message from email: ' + email + '\n\nMessage:\n' + message,
+    // Validation function for the form fields
+    const validate = (): boolean => {
+        const newErrors: ValidationErrors = {}
+
+        // Validate Name
+        if (!formData.name) {
+            newErrors.name = 'Name is required.'
         }
 
-        try {
-            // Make POST request
-            const response = await axios.post('http://misiewicz.info/backend/contact_form.php', data)
-            setStatus(response.data.message || response.data.error)
-        } catch (error) {
-            setStatus('Error sending email. Please try again.')
-            console.error(error)
+        // Validate Email
+        const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/
+        if (!formData.email) {
+            newErrors.email = 'Email is required.'
+        } else if (!emailPattern.test(formData.email)) {
+            newErrors.email = 'Please enter a valid email address.'
+        }
+
+        // Validate Message
+        if (!formData.message) {
+            newErrors.message = 'Message is required.'
+        }
+
+        setErrors(newErrors)
+        return Object.keys(newErrors).length === 0
+    }
+
+    // Handle form submission
+    const handleSubmit = async (event: React.FormEvent) => {
+        event.preventDefault()
+
+        if (validate()) {
+            // Handle form submission logic here, e.g., send data to an API
+            console.log('Form submitted:', formData)
+            const { name, email, message } = formData
+
+            const data = {
+                email,
+                subject: 'Personal Site Contact Form from: ' + name,
+                message: 'Message from email: ' + email + '\n\nMessage:\n' + message,
+            }
+
+            try {
+                // Make POST request
+                const response = await axios.post('http://misiewicz.info/backend/contact_form.php', data)
+                setStatus(response.data.message || response.data.error)
+            } catch (error) {
+                setStatus('Error sending email. Please try again.')
+                console.error(error)
+            }
         }
     }
+
+    // Handle input change
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+        const { name, value } = event.target
+        setFormData({ ...formData, [name]: value })
+
+        setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }))
+    }
+
+    const inputStyle =
+        'bg-dark_bg placeholder-dark_text_muted border border-dark_border rounded-md focus:ring-0 focus:border-dark_hover_border focus:outline-none transform transition duration-300'
+
+    const failureLabelStyle =
+        'w-full text-sm text-dark_failure_primary px-2 pt-1 pb-3 transform transition-ll duration-300'
 
     return (
         <div className="flex justify-center w-full">
@@ -48,33 +109,47 @@ const Contact = () => {
 
                 <div className="flex w-full mt-6 space-x-10">
                     {/* input form */}
-                    <form className="w-full space-y-4" onSubmit={handleSubmit}>
+                    <form className="w-full" onSubmit={handleSubmit} noValidate>
                         <input
                             type="text"
-                            value={contactName}
-                            required
+                            name="name"
+                            value={formData.name}
                             placeholder="Your Name"
-                            className={`w-full p-3 ${inputStyle}`}
-                            onChange={(e) => setContactName(e.target.value)}
+                            className={`w-full p-3 ${inputStyle} ${errors.name ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            onChange={handleChange}
                         />
+                        <div className={`${failureLabelStyle} ${errors.name ? 'h-10 opacity-100' : 'h-0 opacity-0'}`}>
+                            {errors.name}
+                        </div>
+
                         <input
                             type="email"
-                            value={email}
-                            required
+                            name="email"
+                            value={formData.email}
                             placeholder="Your Email"
-                            className={`w-full p-3 ${inputStyle}`}
-                            onChange={(e) => setEmail(e.target.value)}
+                            className={`w-full p-3 ${inputStyle} ${errors.email ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            onChange={handleChange}
                         />
+                        <div className={`${failureLabelStyle} ${errors.email ? 'h-10 opacity-100' : 'h-0 opacity-0'}`}>
+                            {errors.email}
+                        </div>
+
                         <textarea
-                            value={message}
-                            required
+                            name="message"
+                            value={formData.message}
                             placeholder="Your Message"
-                            className={`w-full min-h-40 p-3 ${inputStyle}`}
-                            onChange={(e) => setMessage(e.target.value)}
+                            className={`w-full min-h-40 p-3 mb-0 ${inputStyle} ${errors.message ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            onChange={handleChange}
                         />
+                        <div
+                            className={`${failureLabelStyle} -mt-1.5 ${errors.message ? 'h-10 opacity-100' : 'h-0 opacity-0'}`}
+                        >
+                            {errors.message}
+                        </div>
+
                         <button
                             type="submit"
-                            className="w-full mt-5 py-3 transition-all duration-300 bg-dark_primary text-white font-normal rounded-md hover:bg-green-600"
+                            className="w-full mt-5 py-3 transition-all duration-300 bg-dark_primary hover:bg-dark_primary_hover active:bg-dark_primary_active text-white font-normal rounded-md"
                         >
                             Send Message
                         </button>
