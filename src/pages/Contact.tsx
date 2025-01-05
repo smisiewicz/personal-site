@@ -12,7 +12,7 @@ const Contact = () => {
     const [status, setStatus] = useState('')
 
     const inputStyle =
-        'bg-dark_bg border border-dark_border rounded-md text-dark_text_primary focus:ring-0 focus:border-dark_hover_border focus:outline-none'
+        'bg-dark_bg border border-dark_border rounded-md focus:ring-0 focus:border-dark_hover_border focus:outline-none'
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault()
@@ -36,9 +36,9 @@ const Contact = () => {
     return (
         <div className="flex justify-center w-full">
             <div className="w-full max-w-5xl bg-dark_card px-6 pt-8 pb-12 rounded-lg shadow-lg">
-                <h2 className="w-full text-3xl font-semibold text-dark_text_primary mb-8">Get in Touch</h2>
+                <h2 className="w-full text-3xl font-semibold mb-8">Get in Touch</h2>
 
-                <p className="font-light text-dark_text_primary mb-5">
+                <p className="font-light mb-5">
                     <span className="md:hidden">Feel free to reach out via the contact form below.</span>
                     <span className="hidden md:flex">
                         Feel free to reach out via the contact form below, or scan a QR code to send it from a mobile

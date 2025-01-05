@@ -106,7 +106,7 @@ const NavigationBar = () => {
 
     return (
         <nav
-            className={`z-50 ${isFixed ? 'md:fixed md:top-0 md:-left-5 md:-right-5' : 'md:absolute md:top-6 md:left-0 md:right-0'} md:flex justify-center text-dark_text_primary font-normal`}
+            className={`z-50 ${isFixed ? 'md:fixed md:top-0 md:-left-5 md:-right-5' : 'md:absolute md:top-6 md:left-0 md:right-0'} md:flex justify-center font-normal`}
         >
             <div
                 className={`hidden md:flex bg-dark_card border-dark_border ${isFixed ? 'border-b w-full py-3' : 'border w-11/12 lg:w-5/6 xl:w-3/4 rounded-full'} justify-center transition-all duration-300 text-sm px-3.5`}
@@ -209,7 +209,7 @@ function App() {
                         <Route
                             path="*"
                             element={
-                                <div className="-z-10 flex absolute top-0 left-0 right-0 bottom-0 justify-center items-center text-dark_text_primary">
+                                <div className="-z-10 flex absolute top-0 left-0 right-0 bottom-0 justify-center items-center">
                                     Are you lost?
                                 </div>
                             }

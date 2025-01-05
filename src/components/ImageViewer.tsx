@@ -3,8 +3,8 @@ import React, { useState } from 'react'
 import { PiArrowLeftThin, PiArrowRightThin } from 'react-icons/pi'
 
 interface ImageViewerProps {
-    images: string[] // Array of image URLs
-    onClose: () => void // Function to close the modal
+    images: string[]
+    onClose: () => void
 }
 
 const ImageViewer: React.FC<ImageViewerProps> = ({ images, onClose }) => {

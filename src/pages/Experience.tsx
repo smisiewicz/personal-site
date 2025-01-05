@@ -1,8 +1,22 @@
+import React, { ReactNode } from 'react'
+
+interface XLProps {
+    children: ReactNode
+}
+
+const XL: React.FC<XLProps> = ({ children }) => {
+    return <span className="text-2xl">{children}</span>
+}
+
 const experiences = [
     {
         date: 'Jan 2020 - Present',
         title: 'Senior Software Developer',
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         highlights: [
             <p>
                 Architected and developed native client VPN solutions for iOS, MacOS (Swift/SwiftUI) and Android (Java).
@@ -23,7 +37,11 @@ const experiences = [
     {
         date: 'Oct 2018 - Jan 2020',
         title: 'Senior Software Developer',
-        company: 'Peerstream, Inc.',
+        company: (
+            <p>
+                <XL>P</XL>eer<XL>S</XL>tream, <XL>I</XL>nc.
+            </p>
+        ),
         highlights: [
             <p>
                 Architected and developed <b className="text-dark_secondary mx-0.5">Backchannel</b> client, targeting
@@ -49,7 +67,11 @@ const experiences = [
     {
         date: 'May 2013 - Oct 2018',
         title: 'Senior iOS Developer',
-        company: 'Peerstream, Inc.',
+        company: (
+            <p>
+                <XL>P</XL>eer<XL>S</XL>tream, <XL>I</XL>nc.
+            </p>
+        ),
         description: (
             <p>
                 I delivered and maintained two major apps, from initial setup to app store submission:{' '}
@@ -88,7 +110,11 @@ const experiences = [
     {
         date: 'Apr 2011 - May 2013',
         title: 'iOS Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         description: (
             <p>
                 Worked on various UX and engine elements within Paltalk iOS app. The original app dates back to pre-ARC
@@ -99,13 +125,21 @@ const experiences = [
     {
         date: 'Mar 2010 - Apr 2011',
         title: 'Android Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         description: <p>Worked on various UX and engine elements within Paltalk Android app.</p>,
     },
     {
         date: 'Aug 2007 - Mar 2010',
         title: 'Web/RIA Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         highlights: [
             <p>
                 Co-developed <b className="text-dark_secondary mx-0.5">Paltalk Express</b>: a lightweight web-based
@@ -144,9 +178,9 @@ const Experience = () => {
                                     <p className="text-sm font-bold text-dark_primary uppercase mb-3">
                                         {experience.date}
                                     </p>
-                                    <p className="text-xl text-dark_text_primary font-light uppercase tracking-wider mb-3">
+                                    <div className="text-xl font-light uppercase tracking-wider mb-3">
                                         {experience.company}
-                                    </p>
+                                    </div>
 
                                     <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
 

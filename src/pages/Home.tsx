@@ -7,14 +7,14 @@ const Home = () => {
         <div className="items-center">
             <div className="flex justify-center space-x-6">
                 <div className="space-y-5">
-                    <h1 className="text-6xl font-bold text-dark_text_primary mb-10">Hi there!</h1>
+                    <h1 className="text-6xl font-bold mb-10">Hi there!</h1>
 
                     <div className="flex">
-                        <h3 className="text-3xl font-extrabold text-dark_primary tracking-wide flex-wrap">
-                            <span className="font-normal text-dark_text_primary mr-3">I am</span>
-                            <span className="inline-block mr-3 uppercase">Sebastian</span>
-                            <span className="uppercase">Misiewicz</span>
-                            <span className="font-normal text-dark_text_primary ml-1">.</span>
+                        <h3 className="text-3xl font-extrabold tracking-wide flex-wrap">
+                            <span className="inline-block font-normal mr-3">I am</span>
+                            <span className="inline-block mr-3 uppercase text-dark_primary">Sebastian</span>
+                            <span className="uppercase text-dark_primary">Misiewicz</span>
+                            <span className="font-normal ml-1">.</span>
                         </h3>
                     </div>
                     <h3 className="text-xl font-thin text-white uppercase tracking-wider absolute">
@@ -28,7 +28,7 @@ const Home = () => {
             </div>
 
             <div className="flex justify-center">
-                <div className="max-w-5xl bg-dark_card text-dark_text_primary p-6 rounded-lg shadow-lg font-light mt-14 md:mt-10">
+                <div className="max-w-5xl bg-dark_card p-6 rounded-lg shadow-lg font-light mt-14 md:mt-10">
                     <div className="mb-4">
                         <p>
                             With over sixteen years of experience in software development, I specialize in delivering
@@ -57,14 +57,14 @@ const Home = () => {
 
             <div className="flex justify-center space-x-10 mt-10">
                 <a
-                    className="p-5 rounded-full bg-dark_card hover:text-dark_primary text-dark_text_primary transition-all duration-300"
+                    className="p-5 rounded-full bg-dark_card hover:text-dark_primary transition-all duration-300"
                     href="https://github.com/smisiewicz"
                 >
                     <FaGithub className="text-4xl md:text-5xl" />
                 </a>
 
                 <a
-                    className="p-5 rounded-full bg-dark_card hover:text-dark_primary text-dark_text_primary transition-all duration-300"
+                    className="p-5 rounded-full bg-dark_card hover:text-dark_primary transition-all duration-300"
                     href="https://www.linkedin.com/in/sebastian-misiewicz-8b545b24/"
                 >
                     <FaLinkedin className="text-4xl md:text-5xl" />

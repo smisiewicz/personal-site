@@ -13,8 +13,16 @@ import img_firetalk_4 from '../assets/img-firetalk-4.png'
 
 import { ImageViewer } from '../components'
 
+interface XLProps {
+    children: ReactNode
+}
+
+const XL: React.FC<XLProps> = ({ children }) => {
+    return <span className="text-2xl">{children}</span>
+}
+
 interface Video {
-    company: string
+    company: ReactNode
     title: ReactNode
     subtitle: ReactNode
     thumbnail: string
@@ -25,7 +33,11 @@ interface Video {
 
 const videos: Video[] = [
     {
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         title: <p>iOS Client Demo</p>,
         subtitle: (
             <p>
@@ -37,7 +49,11 @@ const videos: Video[] = [
         videoUrl: 'https://www.youtube.com/embed/r4OrayDG5k0',
     },
     {
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         title: <p>Android Client Demo</p>,
         subtitle: (
             <p>
@@ -50,7 +66,11 @@ const videos: Video[] = [
         videoUrl: 'https://www.youtube.com/embed/BaY8iDENMx4',
     },
     {
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         title: <p>MacOS Client Demo</p>,
         subtitle: (
             <p>
@@ -63,7 +83,11 @@ const videos: Video[] = [
         videoUrl: 'https://www.youtube.com/embed/ROUbkq4S7ZA',
     },
     {
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         title: <p>Mesh Simulator Demo</p>,
         subtitle: (
             <p>
@@ -75,7 +99,11 @@ const videos: Video[] = [
         videoUrl: 'https://www.youtube.com/embed/bddTjAx_l44',
     },
     {
-        company: 'PeerStream, Inc.',
+        company: (
+            <p>
+                <XL>P</XL>eer<XL>S</XL>tream, <XL>I</XL>nc.
+            </p>
+        ),
         title: <p>Firetalk Mobile App</p>,
         subtitle: (
             <p>
@@ -95,14 +123,13 @@ interface VideoThumbnailProps extends Video {
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, title, subtitle, onClick }) => {
     return (
-        <div className="container bg-dark_inset_card border border-dark_inset_border rounded-lg p-3 transform transition duration-300 hover:scale-105 text-dark_text_primary font-light">
+        <div className="container bg-dark_inset_card border border-dark_inset_border rounded-lg p-3 transform transition duration-300 hover:scale-105 font-light">
             {/* Video Thumbnail Grid Item */}
             <div className="cursor-pointer" onClick={onClick}>
                 <img src={thumbnail} alt="" className="w-full h-full object-cover rounded-md " />
-                <div className="absolute inset-0 bg-white bg-opacity-5 rounded-md opacity-0 group-hover:opacity-100 transition duration-300 flex justify-center items-center" />
 
                 <div className="mt-5 mb-5 px-2">
-                    <p className="text-xl text-dark_text_primary font-light uppercase tracking-wider">{company}</p>
+                    <div className="text-xl font-light uppercase tracking-wider">{company}</div>
 
                     <div className="h-px w-full bg-dark_border my-5" />
 
