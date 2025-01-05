@@ -26,8 +26,8 @@ const experiences = [
         company: 'Peerstream, Inc.',
         highlights: [
             <p>
-                Architected and developed <b className="text-secondary mx-0.5">Backchannel</b> client, targeting both
-                Android and iOS (React Native).
+                Architected and developed <b className="text-dark_secondary mx-0.5">Backchannel</b> client, targeting
+                both Android and iOS (React Native).
             </p>,
             <p>Created automated build distribution pipelines for each platform.</p>,
             <p>Built video calling and audio push-to-talk UX (1:1).</p>,
@@ -53,9 +53,9 @@ const experiences = [
         description: (
             <p>
                 I delivered and maintained two major apps, from initial setup to app store submission:{' '}
-                <b className="text-secondary mx-0.5">Firetalk</b> and{' '}
-                <b className="text-secondary mx-0.5">Pack - Live Group Video Chat</b>. Primarily written in Swift with
-                additional bridged Obj-C components:
+                <b className="text-dark_secondary mx-0.5">Firetalk</b> and{' '}
+                <b className="text-dark_secondary mx-0.5">Pack - Live Group Video Chat</b>. Primarily written in Swift
+                with additional bridged Obj-C components:
             </p>
         ),
         highlights: [
@@ -108,8 +108,8 @@ const experiences = [
         company: 'Paltalk (AVM Software Inc.)',
         highlights: [
             <p>
-                Co-developed <b className="text-secondary mx-0.5">Paltalk Express</b>: a lightweight web-based version
-                of Paltalk client.
+                Co-developed <b className="text-dark_secondary mx-0.5">Paltalk Express</b>: a lightweight web-based
+                version of Paltalk client.
             </p>,
             <p>Developed various web flash widgets for marketing campaigns.</p>,
         ],
@@ -121,7 +121,7 @@ const Experience = () => {
         <div className="w-full flex justify-center items-center">
             <div className="relative max-w-5xl w-full md:my-5">
                 {/* line */}
-                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-primary"></div>
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-dark_primary"></div>
 
                 {/* content */}
                 <div className="space-y-6 md:space-y-16">
@@ -133,26 +133,30 @@ const Experience = () => {
                             {/* position left or right, or center for smaller screen sizes */}
                             <div className={`flex w-full md:w-1/2 md:justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                                 <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
-                                    <div className="w-6 h-6 bg-primary rounded-full border-4 border-gray-900"></div>
+                                    <div className="w-6 h-6 bg-dark_primary rounded-full border-4 border-gray-900"></div>
                                 </div>
 
                                 <div
-                                    className={`bg-darkcard w-full shadow-md rounded-lg p-6 md:mt-1 ${
+                                    className={`bg-dark_card w-full shadow-md rounded-lg p-6 md:mt-1 ${
                                         index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
                                     }`}
                                 >
-                                    <p className="text-sm font-bold text-primary uppercase mb-3">{experience.date}</p>
-                                    <p className="text-xl text-lightgray font-light uppercase tracking-wider mb-3">
+                                    <p className="text-sm font-bold text-dark_primary uppercase mb-3">
+                                        {experience.date}
+                                    </p>
+                                    <p className="text-xl text-dark_text_primary font-light uppercase tracking-wider mb-3">
                                         {experience.company}
                                     </p>
 
-                                    <p className="text-lightgray font-bold mb-1">{experience.title}</p>
+                                    <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
 
                                     {experience.description && (
-                                        <div className="text-lightgray font-light">{experience.description}</div>
+                                        <div className="text-dark_text_primary font-light">
+                                            {experience.description}
+                                        </div>
                                     )}
 
-                                    <ul className="text-lightgray font-light list-disc pl-4">
+                                    <ul className="text-dark_text_primary font-light list-disc pl-4">
                                         {experience.highlights &&
                                             experience.highlights.map((item, index) => (
                                                 <li key={index} className="mt-1">

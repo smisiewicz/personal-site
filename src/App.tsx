@@ -21,13 +21,14 @@ const NavLink = (props: NavLinkProps) => {
 
     let linkClassName = className ? `${className} ` : ''
     linkClassName +=
-        'py-2.5 md:py-3.5 px-5 hover:text-primary transition-all duration-300 uppercase tracking-wide relative'
+        'py-2.5 md:py-3.5 px-5 hover:text-dark_primary transition-all duration-300 uppercase tracking-wide relative'
 
     if (location.pathname === to) {
-        linkClassName += ' text-primary'
+        linkClassName += ' text-dark_primary'
     }
 
-    const borderClassName = 'absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent'
+    const borderClassName =
+        'absolute left-0 w-full h-px bg-gradient-to-r from-transparent via-dark_primary to-transparent'
 
     if (onClick) {
         return (
@@ -105,10 +106,10 @@ const NavigationBar = () => {
 
     return (
         <nav
-            className={`z-50 ${isFixed ? 'md:fixed md:top-0 md:-left-5 md:-right-5' : 'md:absolute md:top-6 md:left-0 md:right-0'} md:flex justify-center text-lightgray font-normal`}
+            className={`z-50 ${isFixed ? 'md:fixed md:top-0 md:-left-5 md:-right-5' : 'md:absolute md:top-6 md:left-0 md:right-0'} md:flex justify-center text-dark_text_primary font-normal`}
         >
             <div
-                className={`hidden md:flex bg-darkcard border-zinc-800 ${isFixed ? 'border-b w-full py-3' : 'border w-11/12 lg:w-5/6 xl:w-3/4 rounded-full'} justify-center transition-all duration-300 text-sm px-3.5`}
+                className={`hidden md:flex bg-dark_card border-dark_border ${isFixed ? 'border-b w-full py-3' : 'border w-11/12 lg:w-5/6 xl:w-3/4 rounded-full'} justify-center transition-all duration-300 text-sm px-3.5`}
             >
                 <div className="flex justify-between space-x-4">
                     <NavLink to="/">
@@ -137,7 +138,7 @@ const NavigationBar = () => {
                 <div className="flex justify-end p-1">
                     <button
                         type="button"
-                        className="md:hidden text-primary"
+                        className="md:hidden text-dark_primary"
                         aria-expanded="false"
                         onClick={togglePopupMenu}
                     >
@@ -162,7 +163,7 @@ const NavigationBar = () => {
 
                 {/* Popup Menu */}
                 <div
-                    className={`overflow-hidden transition-all ease-[cubic-bezier(0.76,0,0.24,1)] duration-500 ${isShowingNavPopup ? 'h-[264px] opacity-100' : 'h-0 opacity-0'} bg-darkcard border border-zinc-800 rounded-md mt-2 text-sm`}
+                    className={`overflow-hidden transition-all ease-[cubic-bezier(0.76,0,0.24,1)] duration-500 ${isShowingNavPopup ? 'h-[264px] opacity-100' : 'h-0 opacity-0'} bg-dark_card border border-dark_border rounded-md mt-2 text-sm`}
                 >
                     <div className="flex flex-col items-center space-y-2 py-4">
                         <NavLink to="/" className="menu-item">
@@ -208,7 +209,7 @@ function App() {
                         <Route
                             path="*"
                             element={
-                                <div className="-z-10 flex absolute top-0 left-0 right-0 bottom-0 justify-center items-center text-lightgray">
+                                <div className="-z-10 flex absolute top-0 left-0 right-0 bottom-0 justify-center items-center text-dark_text_primary">
                                     Are you lost?
                                 </div>
                             }
@@ -221,11 +222,11 @@ function App() {
                     <p className="text-center">
                         <span className="mr-1.5">{`© ${new Date().getFullYear()} Sebastian Misiewicz.`}</span>
                         <span>{`Written using`}</span>
-                        <a className="text-primary mx-1" href="https://react.dev">
+                        <a className="text-dark_primary mx-1" href="https://react.dev">
                             React
                         </a>
                         <span>{`and`}</span>
-                        <a className="text-primary mx-1" href="https://tailwindcss.com">
+                        <a className="text-dark_primary mx-1" href="https://tailwindcss.com">
                             Tailwind CSS
                         </a>
                         <span>{`.`}</span>
