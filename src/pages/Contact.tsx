@@ -1,4 +1,4 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
 
 import qrCode from '../assets/contact-form-qr.svg'
 
@@ -8,6 +8,11 @@ interface FormData {
     name: string
     email: string
     message: string
+}
+
+interface ResponseStatus {
+    success: boolean
+    message?: string
 }
 
 interface ValidationErrors {
@@ -26,11 +31,13 @@ const Contact = () => {
     })
 
     const [errors, setErrors] = useState<ValidationErrors>({})
-    const [status, setStatus] = useState<string | null>(null)
+    const [status, setStatus] = useState<ResponseStatus | undefined>(undefined)
 
-    // Validation function for the form fields
     const validate = (): boolean => {
         const newErrors: ValidationErrors = {}
+
+        // Cleanup status, if exists
+        setStatus(undefined)
 
         // Validate Name
         if (!formData.name) {
@@ -54,13 +61,10 @@ const Contact = () => {
         return Object.keys(newErrors).length === 0
     }
 
-    // Handle form submission
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault()
 
         if (validate()) {
-            // Handle form submission logic here, e.g., send data to an API
-            console.log('Form submitted:', formData)
             const { name, email, message } = formData
 
             const data = {
@@ -70,21 +74,28 @@ const Contact = () => {
             }
 
             try {
-                // Make POST request
-                const response = await axios.post('http://misiewicz.info/backend/contact_form.php', data)
-                setStatus(response.data.message || response.data.error)
+                const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data)
+
+                console.log('>> RESPONSE: ' + JSON.stringify(response, null, 2))
+                setStatus({ success: response.status === 200, message: response.data.message || response.data.error })
+
+                // Reset the form
+                setFormData({
+                    name: '',
+                    email: '',
+                    message: '',
+                })
             } catch (error) {
-                setStatus('Error sending email. Please try again.')
+                setStatus({ success: false, message: 'Error sending email. Please try again.' })
                 console.error(error)
             }
         }
     }
 
-    // Handle input change
     const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
         const { name, value } = event.target
-        setFormData({ ...formData, [name]: value })
 
+        setFormData({ ...formData, [name]: value })
         setErrors((prevErrors) => ({ ...prevErrors, [name]: '' }))
     }
 
@@ -110,12 +121,20 @@ const Contact = () => {
                 <div className="flex w-full mt-6 space-x-10">
                     {/* input form */}
                     <form className="w-full" onSubmit={handleSubmit} noValidate>
+                        {status?.message ? (
+                            <div
+                                className={`"w-full p-5 mb-6 ${status.success ? 'bg-dark_success_muted border border-dark_success_primary text-dark_success_text' : 'bg-dark_failure_muted border border-dark_failure_border_muted text-dark_failure_primary'} `}
+                            >
+                                {status.message}
+                            </div>
+                        ) : undefined}
+
                         <input
                             type="text"
                             name="name"
                             value={formData.name}
                             placeholder="Your Name"
-                            className={`w-full p-3 ${inputStyle} ${errors.name ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            className={`w-full p-3 ${inputStyle} ${errors.name ? 'border-dark_failure_border_muted focus:border-red-700' : ''}`}
                             onChange={handleChange}
                         />
                         <div className={`${failureLabelStyle} ${errors.name ? 'h-10 opacity-100' : 'h-0 opacity-0'}`}>
@@ -127,7 +146,7 @@ const Contact = () => {
                             name="email"
                             value={formData.email}
                             placeholder="Your Email"
-                            className={`w-full p-3 ${inputStyle} ${errors.email ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            className={`w-full p-3 ${inputStyle} ${errors.email ? 'border-dark_failure_border_muted focus:border-red-700' : ''}`}
                             onChange={handleChange}
                         />
                         <div className={`${failureLabelStyle} ${errors.email ? 'h-10 opacity-100' : 'h-0 opacity-0'}`}>
@@ -138,7 +157,7 @@ const Contact = () => {
                             name="message"
                             value={formData.message}
                             placeholder="Your Message"
-                            className={`w-full min-h-40 p-3 mb-0 ${inputStyle} ${errors.message ? 'border-dark_failure_muted focus:border-dark_failure_primary' : ''}`}
+                            className={`w-full min-h-40 p-3 mb-0 ${inputStyle} ${errors.message ? 'border-dark_failure_border_muted focus:border-red-700' : ''}`}
                             onChange={handleChange}
                         />
                         <div
@@ -153,9 +172,6 @@ const Contact = () => {
                         >
                             Send Message
                         </button>
-
-                        {/* FIXME: */}
-                        {status && <p>{status}</p>}
                     </form>
 
                     <div className="hidden md:block w-px bg-dark_spacer_border" />

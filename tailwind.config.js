@@ -17,7 +17,12 @@ module.exports = {
                 dark_primary_active: '#039467',
                 dark_secondary: '#04714f',
                 dark_failure_primary: '#de3c4b',
-                dark_failure_muted: '#de3c4b77',
+                dark_failure_muted: '#de3c4b0f',
+                dark_failure_border_muted: '#de3c4b44',
+                dark_failure_text: '#de3c4b77',
+                dark_success_primary: '#04714f66',
+                dark_success_muted: '#04714f22',
+                dark_success_text: '#18C991',
             },
             fontFamily: {
                 primary: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],
