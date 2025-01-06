@@ -70,13 +70,12 @@ const Contact = () => {
             const data = {
                 email,
                 subject: 'Personal Site Contact Form from: ' + name,
-                message: 'Message from email: ' + email + '\n\nMessage:\n' + message,
+                message: 'Message from: ' + name + ', email: ' + email + '\n\nMessage:\n' + message,
             }
 
             try {
                 const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data)
-
-                console.log('>> RESPONSE: ' + JSON.stringify(response, null, 2))
+                
                 setStatus({ success: response.status === 200, message: response.data.message || response.data.error })
 
                 // Reset the form
