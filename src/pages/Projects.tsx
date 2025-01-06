@@ -123,7 +123,7 @@ interface VideoThumbnailProps extends Video {
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, title, subtitle, onClick }) => {
     return (
-        <div className="container bg-dark_inset_card border border-dark_inset_border rounded-lg p-3 transform transition duration-300 hover:scale-105 font-light">
+        <div className="container bg-dark_inset_card border border-dark_inset_border rounded-lg p-3 transform transition duration-300 hover:scale-105 font-light shadow-md shadow-dark_shadow">
             {/* Video Thumbnail Grid Item */}
             <div className="cursor-pointer" onClick={onClick}>
                 <img src={thumbnail} alt="" className="w-full h-full object-cover rounded-md " />
@@ -131,7 +131,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, tit
                 <div className="mt-5 mb-5 px-2">
                     <div className="text-xl font-light uppercase tracking-wider">{company}</div>
 
-                    <div className="h-px w-full bg-dark_border my-5" />
+                    <div className="h-px w-full bg-dark_inset_border my-5" />
 
                     <div className="text-dark_text_primary font-bold mb-2">{title}</div>
                     <div className="text-dark_text_primary font-light">{subtitle}</div>

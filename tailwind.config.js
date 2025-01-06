@@ -4,12 +4,13 @@ module.exports = {
         extend: {
             colors: {
                 dark_bg: '#161617',
+                dark_shadow: '#212123',
                 dark_card: '#28282a',
                 dark_border: '#363638',
                 dark_spacer_border: '#414143',
                 dark_hover_border: '#48484a',
-                dark_inset_card: '#1e1e20',
-                dark_inset_border: '#303032',
+                dark_inset_card: '#3a3a3c',
+                dark_inset_border: '#49494b',
                 dark_text_primary: '#c1c1c3',
                 dark_text_muted: '#c1c1c355',
                 dark_primary: '#059669',
