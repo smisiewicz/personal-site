@@ -11,7 +11,7 @@ import img_firetalk_2 from '../assets/img-firetalk-2.png'
 import img_firetalk_3 from '../assets/img-firetalk-3.png'
 import img_firetalk_4 from '../assets/img-firetalk-4.png'
 
-import { ImageViewer } from '../components'
+import { ImageViewer, VideoViewer } from '../components'
 
 interface XLProps {
     children: ReactNode
@@ -165,31 +165,12 @@ const Projects = () => {
 
             {/* Modal for video player */}
             {selectedVideoUrl && (
-                <div
-                    className="fixed inset-0 bg-black bg-opacity-55 flex justify-center items-center z-50"
-                    onClick={() => setSelectedVideoUrl(null)}
-                >
-                    <div
-                        className="relative overflow-hidden rounded-md bg-black border border-gray-700"
-                        style={{
-                            width: '80%',
-                            maxWidth: '1200px',
-                            paddingBottom: '56.25%', // 16:9 aspect ratio
-                            position: 'relative',
-                            maxHeight: '80vh', // Optional for responsive video height
-                        }}
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <iframe
-                            className="absolute top-0 left-0 w-full h-full"
-                            src={`${selectedVideoUrl}?autoplay=1`}
-                            allow="autoplay; encrypted-media"
-                            allowFullScreen
-                            title="Video Player"
-                            frameBorder="0"
-                        />
-                    </div>
-                </div>
+                <VideoViewer
+                    videoURL={selectedVideoUrl}
+                    onClose={() => {
+                        setSelectedVideoUrl(null)
+                    }}
+                />
             )}
 
             {/* Modal for an image viewer */}

@@ -24,6 +24,8 @@ module.exports = {
                 dark_success_primary: '#04714f66',
                 dark_success_muted: '#04714f22',
                 dark_success_text: '#18C991',
+                dark_button_bg_transparent: '#00000055',
+                dark_button_border_transparent: '#c1c1c333',
             },
             fontFamily: {
                 primary: ['Lato', 'Helvetica', 'Arial', 'sans-serif'],
