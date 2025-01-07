@@ -154,8 +154,8 @@ const Projects = () => {
     }
 
     return (
-        <div className="flex justify-center w-full">
-            <div className="w-full max-w-5xl bg-dark_card px-6 pt-8 pb-12 rounded-lg shadow-lg">
+        <div className="w-full flex justify-center items-center">
+            <div className="max-w-5xl w-full">
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                     {videos.map((video, index) => (
                         <VideoThumbnail key={index} {...video} onClick={() => onThumbnailClick(video)} />
