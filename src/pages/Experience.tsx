@@ -171,7 +171,7 @@ const Experience = () => {
                                 </div>
 
                                 <div
-                                    className={`bg-dark_card w-full shadow-md rounded-lg p-6 md:mt-1 ${
+                                    className={`bg-dark_card w-full shadow-md rounded-lg p-6 pb-10 md:mt-1 ${
                                         index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
                                     }`}
                                 >
@@ -181,6 +181,8 @@ const Experience = () => {
                                     <div className="text-xl font-light uppercase tracking-wider mb-3">
                                         {experience.company}
                                     </div>
+
+                                    <div className="h-px w-full bg-dark_border my-5" />
 
                                     <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
 

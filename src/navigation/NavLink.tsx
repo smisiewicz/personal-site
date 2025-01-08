@@ -15,7 +15,7 @@ const NavLink = (props: NavLinkProps) => {
 
     let linkClassName = className ? `${className} ` : ''
     linkClassName +=
-        'py-2.5 md:py-3.5 px-5 hover:text-dark_primary transition-all duration-300 uppercase tracking-wide relative'
+        'py-2.5 md:py-4 px-5 hover:text-dark_primary transition-all duration-300 uppercase font-light tracking-wide relative'
 
     if (location.pathname === to) {
         linkClassName += ' text-dark_primary'

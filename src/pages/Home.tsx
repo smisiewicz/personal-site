@@ -5,19 +5,19 @@ import { FaGithub, FaLinkedin } from 'react-icons/fa'
 const Home = () => {
     return (
         <div className="items-center">
-            <div className="flex justify-center space-x-6">
+            <div className="flex justify-center space-x-8">
                 <div className="space-y-5">
                     <h1 className="text-6xl font-bold mb-10">Hi there!</h1>
 
                     <div className="flex">
-                        <h3 className="text-3xl font-extrabold tracking-wide flex-wrap">
+                        <h3 className="text-3xl font-extrabold flex-wrap">
                             <span className="inline-block font-normal mr-3">I am</span>
                             <span className="inline-block mr-3 uppercase text-dark_primary">Sebastian</span>
                             <span className="uppercase text-dark_primary">Misiewicz</span>
                             <span className="font-normal ml-1">.</span>
                         </h3>
                     </div>
-                    <h3 className="text-xl font-thin text-white uppercase tracking-wider absolute">
+                    <h3 className="text-2xl font-thin text-white uppercase tracking-wide absolute">
                         Software Developer
                     </h3>
                 </div>
