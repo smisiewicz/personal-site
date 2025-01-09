@@ -122,12 +122,24 @@ interface VideoThumbnailProps extends Video {
 }
 
 const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, title, subtitle, onClick }) => {
+    const [isImageLoaded, setIsImageLoaded] = useState(false)
+
     return (
         <div className="container bg-dark_card border border-dark_border rounded-lg p-3 transform transition duration-300 hover:scale-105 font-light">
             {/* Video Thumbnail Grid Item */}
             <div className="cursor-pointer" onClick={onClick}>
                 <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
-                    <img src={thumbnail} alt="" className="object-cover" />
+                    <div
+                        className={`${isImageLoaded ? 'hidden' : ''} absolute w-8 h-8 border-4 border-t-transparent border-dark_spacer_border rounded-full animate-spin`}
+                    />
+                    <img
+                        className="object-cover"
+                        src={thumbnail}
+                        alt=""
+                        onLoad={() => {
+                            setIsImageLoaded(true)
+                        }}
+                    />
                 </div>
 
                 <div className="mt-5 mb-5 px-2">

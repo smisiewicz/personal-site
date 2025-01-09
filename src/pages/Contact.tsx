@@ -75,7 +75,7 @@ const Contact = () => {
 
             try {
                 const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data)
-                
+
                 setStatus({ success: response.status === 200, message: response.data.message || response.data.error })
 
                 // Reset the form
@@ -181,7 +181,7 @@ const Contact = () => {
                         <div className="flex justify-center items-center overflow-hidden p-2 border border-dark_spacer_border aspect-square">
                             <div
                                 className={`${isQrLoaded ? 'hidden' : ''} absolute w-8 h-8 border-4 border-t-transparent border-dark_spacer_border rounded-full animate-spin`}
-                            ></div>
+                            />
                             <img
                                 src={qrCode}
                                 onLoad={() => {
