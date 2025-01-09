@@ -126,7 +126,9 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, tit
         <div className="container bg-dark_card border border-dark_border rounded-lg p-3 transform transition duration-300 hover:scale-105 font-light">
             {/* Video Thumbnail Grid Item */}
             <div className="cursor-pointer" onClick={onClick}>
-                <img src={thumbnail} alt="" className="w-full h-full object-cover rounded-md " />
+                <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
+                    <img src={thumbnail} alt="" className="object-cover" />
+                </div>
 
                 <div className="mt-5 mb-5 px-2">
                     <div className="text-xl font-light uppercase tracking-wider">{company}</div>
