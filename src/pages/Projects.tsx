@@ -11,7 +11,7 @@ import img_firetalk_2 from '../assets/img-firetalk-2.png'
 import img_firetalk_3 from '../assets/img-firetalk-3.png'
 import img_firetalk_4 from '../assets/img-firetalk-4.png'
 
-import { ImageViewer, VideoViewer } from '../components'
+import { ImageViewer, Spinner, VideoViewer } from '../components'
 
 interface XLProps {
     children: ReactNode
@@ -129,9 +129,7 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, tit
             {/* Video Thumbnail Grid Item */}
             <div className="cursor-pointer" onClick={onClick}>
                 <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
-                    <div
-                        className={`${isImageLoaded ? 'hidden' : ''} absolute w-8 h-8 border-4 border-t-transparent border-dark_spacer_border rounded-full animate-spin`}
-                    />
+                    <Spinner hidden={isImageLoaded} />
                     <img
                         className="object-cover"
                         src={thumbnail}

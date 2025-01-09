@@ -1,8 +1,9 @@
-import { useState } from 'react'
+import React, { useState } from 'react'
 
 import qrCode from '../assets/contact-form-qr.svg'
 
 import axios from 'axios'
+import { Spinner } from '../components'
 
 interface FormData {
     name: string
@@ -179,9 +180,7 @@ const Contact = () => {
                     {/* mailto:s.p.misiewicz@pm.me?subject=misiewicz.info%20-%20Personal%20Site%20Contact%20Form */}
                     <div className="hidden md:block pr-5 w-[460px]">
                         <div className="flex justify-center items-center overflow-hidden p-2 border border-dark_spacer_border aspect-square">
-                            <div
-                                className={`${isQrLoaded ? 'hidden' : ''} absolute w-8 h-8 border-4 border-t-transparent border-dark_spacer_border rounded-full animate-spin`}
-                            />
+                            <Spinner hidden={isQrLoaded} />
                             <img
                                 src={qrCode}
                                 onLoad={() => {
