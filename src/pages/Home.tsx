@@ -11,7 +11,7 @@ const Home = () => {
     return (
         <div className="flex flex-col items-center">
             <div className="max-w-5xl w-full pl-2 md:pl-6">
-                <div className="flex justify-center items-center overflow-hidden float-right ml-4 w-40 sm:w-56 md:w-72 lg:w-96 border border-dark_border aspect-square rounded-3xl">
+                <div className="flex justify-center items-center overflow-hidden float-right ml-4 w-32 sm:w-56 md:w-72 lg:w-96 border border-dark_border aspect-square rounded-3xl">
                     <Spinner hidden={isPortraitLoaded} />
                     <img className="object-cover" src={portrait} alt="" onLoad={() => setIsPortraitLoaded(true)} />
                 </div>
