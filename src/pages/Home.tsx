@@ -1,44 +1,34 @@
 import portrait from '../assets/img-bg-portrait.jpeg'
 
-import { FaGithub, FaLinkedin } from 'react-icons/fa'
-import { Spinner } from '../components'
 import { useState } from 'react'
+import { FaGithub, FaLinkedin } from 'react-icons/fa'
+
+import { Spinner } from '../components'
 
 const Home = () => {
     const [isPortraitLoaded, setIsPortraitLoaded] = useState(false)
 
     return (
-        <div className="items-center">
-            <div className="flex justify-center space-x-8">
-                <div className="space-y-5">
-                    <h1 className="text-6xl font-bold mb-10">Hi there!</h1>
-
-                    <div className="flex">
-                        <h3 className="text-3xl font-extrabold flex-wrap">
-                            <span className="inline-block font-normal mr-3">I am</span>
-                            <span className="inline-block mr-3 uppercase text-dark_primary">Sebastian</span>
-                            <span className="uppercase text-dark_primary">Misiewicz</span>
-                            <span className="font-normal ml-1">.</span>
-                        </h3>
-                    </div>
-                    <h3 className="text-2xl font-thin text-white uppercase tracking-wide absolute">
-                        Software Developer
-                    </h3>
-                </div>
-
-                <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
+        <div className="flex flex-col items-center">
+            <div className="max-w-5xl w-full pl-2 md:pl-6">
+                <div className="flex justify-center items-center overflow-hidden float-right ml-4 w-40 sm:w-56 md:w-72 lg:w-96 border border-dark_border aspect-square rounded-3xl">
                     <Spinner hidden={isPortraitLoaded} />
-                    <img
-                        className="h-auto max-w-full rounded-3xl"
-                        src={portrait}
-                        alt=""
-                        onLoad={() => setIsPortraitLoaded(true)}
-                    />
+                    <img className="object-cover" src={portrait} alt="" onLoad={() => setIsPortraitLoaded(true)} />
                 </div>
+
+                <h1 className="text-6xl font-bold mb-8">Hi there!</h1>
+                <span className="inline-block text-3xl font-normal mr-3">I am</span>
+                <span className="inline-block text-3xl uppercase text-dark_primary font-extrabold mr-3">Sebastian</span>
+                <span className="inline-block text-3xl uppercase text-dark_primary font-extrabold">Misiewicz</span>
+                <span className="inline-block text-3xl font-normal ml-1">.</span>
+
+                <h3 className="inline-block text-2xl font-thin text-white uppercase tracking-wide mt-8">
+                    Software Developer
+                </h3>
             </div>
 
             <div className="flex justify-center">
-                <div className="max-w-5xl bg-dark_card p-6 rounded-lg shadow-lg font-light mt-14 md:mt-10">
+                <div className="max-w-5xl bg-dark_card p-6 rounded-lg shadow-lg font-light mt-6">
                     <div className="mb-4">
                         <p>
                             With over sixteen years of experience in software development, I specialize in delivering
