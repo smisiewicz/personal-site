@@ -1,8 +1,12 @@
 import portrait from '../assets/img-bg-portrait.jpeg'
 
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+import { Spinner } from '../components'
+import { useState } from 'react'
 
 const Home = () => {
+    const [isPortraitLoaded, setIsPortraitLoaded] = useState(false)
+
     return (
         <div className="items-center">
             <div className="flex justify-center space-x-8">
@@ -22,8 +26,14 @@ const Home = () => {
                     </h3>
                 </div>
 
-                <div>
-                    <img className="h-auto max-w-full rounded-3xl" src={portrait} alt="" />
+                <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
+                    <Spinner hidden={isPortraitLoaded} />
+                    <img
+                        className="h-auto max-w-full rounded-3xl"
+                        src={portrait}
+                        alt=""
+                        onLoad={() => setIsPortraitLoaded(true)}
+                    />
                 </div>
             </div>
 
