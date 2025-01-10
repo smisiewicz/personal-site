@@ -182,7 +182,7 @@ const Contact = () => {
                         <div className="flex justify-center items-center overflow-hidden p-2 border border-dark_spacer_border aspect-square">
                             <Spinner hidden={isQrLoaded} />
                             <img
-                                className={`transition duration-500 ${isQrLoaded ? 'opacity-100' : 'opacity-0'}`}
+                                className={`transition duration-1000 ${isQrLoaded ? 'opacity-100' : 'opacity-0'}`}
                                 src={qrCode}
                                 onLoad={() => setIsQrLoaded(true)}
                                 alt=""
