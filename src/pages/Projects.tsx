@@ -130,7 +130,12 @@ const VideoThumbnail: React.FC<VideoThumbnailProps> = ({ company, thumbnail, tit
             <div className="cursor-pointer" onClick={onClick}>
                 <div className="flex justify-center items-center overflow-hidden border border-dark_border aspect-video rounded-md">
                     <Spinner hidden={isImageLoaded} />
-                    <img className="object-cover" src={thumbnail} alt="" onLoad={() => setIsImageLoaded(true)} />
+                    <img
+                        className={`object-cover transition duration-1000 ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        onLoad={() => setIsImageLoaded(true)}
+                        src={thumbnail}
+                        alt=""
+                    />
                 </div>
 
                 <div className="mt-5 mb-5 px-2">

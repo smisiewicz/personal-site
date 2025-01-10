@@ -183,8 +183,8 @@ const Contact = () => {
                             <Spinner hidden={isQrLoaded} />
                             <img
                                 className={`transition duration-1000 ${isQrLoaded ? 'opacity-100' : 'opacity-0'}`}
-                                src={qrCode}
                                 onLoad={() => setIsQrLoaded(true)}
+                                src={qrCode}
                                 alt=""
                             />
                         </div>
