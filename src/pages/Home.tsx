@@ -13,7 +13,12 @@ const Home = () => {
             <div className="max-w-5xl w-full pl-2 md:pl-6">
                 <div className="flex justify-center items-center overflow-hidden float-right ml-4 w-32 sm:w-56 md:w-72 lg:w-96 border border-dark_border aspect-square rounded-3xl">
                     <Spinner hidden={isPortraitLoaded} />
-                    <img className="object-cover" src={portrait} alt="" onLoad={() => setIsPortraitLoaded(true)} />
+                    <img
+                        className={`object-cover transition duration-1000 ${isPortraitLoaded ? 'opacity-100' : 'opacity-0'}`}
+                        onLoad={() => setIsPortraitLoaded(true)}
+                        src={portrait}
+                        alt=""
+                    />
                 </div>
 
                 <h1 className="text-6xl font-bold mb-8">Hi there!</h1>
