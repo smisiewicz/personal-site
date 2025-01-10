@@ -24,6 +24,7 @@ interface ValidationErrors {
 
 const Contact = () => {
     const [isQrLoaded, setIsQrLoaded] = useState(false)
+    const [isProcessing, setIsProcessing] = useState(false)
 
     const [formData, setFormData] = useState<FormData>({
         name: '',
@@ -66,8 +67,9 @@ const Contact = () => {
         event.preventDefault()
 
         if (validate()) {
-            const { name, email, message } = formData
+            setIsProcessing(true)
 
+            const { name, email, message } = formData
             const data = {
                 email,
                 subject: 'Personal Site Contact Form from: ' + name,
@@ -85,8 +87,11 @@ const Contact = () => {
                     email: '',
                     message: '',
                 })
+
+                setIsProcessing(false)
             } catch (error) {
                 setStatus({ success: false, message: 'Error sending email. Please try again.' })
+                setIsProcessing(false)
                 console.error(error)
             }
         }
@@ -168,9 +173,11 @@ const Contact = () => {
 
                         <button
                             type="submit"
-                            className="w-full mt-5 py-3 transition-all duration-300 bg-dark_primary hover:bg-dark_primary_hover active:bg-dark_primary_active text-white font-normal rounded-md"
+                            disabled={isProcessing}
+                            className="relative flex justify-center items-center w-full mt-5 py-3 transition-all duration-300 bg-dark_primary hover:bg-dark_primary_hover active:bg-dark_primary_active disabled:bg-dark_primary_disabled text-white disabled:text-dark_text_muted font-normal rounded-md"
                         >
-                            Send Message
+                            <span>Send Message</span>
+                            <Spinner className="right-3 border-dark_text_muted" hidden={!isProcessing} />
                         </button>
                     </form>
 

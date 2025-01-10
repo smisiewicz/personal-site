@@ -16,6 +16,7 @@ module.exports = {
                 dark_primary: '#059669',
                 dark_primary_hover: '#13a477',
                 dark_primary_active: '#039467',
+                dark_primary_disabled: '#05966977',
                 dark_secondary: '#04714f',
                 dark_failure_primary: '#de3c4b',
                 dark_failure_muted: '#de3c4b0f',
