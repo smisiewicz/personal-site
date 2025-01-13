@@ -25,11 +25,9 @@ const Home = () => {
                 <span className="inline-block text-3xl font-normal mr-3">I am</span>
                 <span className="inline-block text-3xl uppercase text-dark_primary font-extrabold mr-3">Sebastian</span>
                 <span className="inline-block text-3xl uppercase text-dark_primary font-extrabold">Misiewicz</span>
-                <span className="inline-block text-3xl font-normal ml-1">.</span>
+                {/*<span className="inline-block text-3xl font-normal ml-1">.</span>*/}
 
-                <h3 className="inline-block text-2xl font-thin text-white uppercase tracking-wide mt-8">
-                    Software Developer
-                </h3>
+                <h3 className="block text-2xl font-thin text-white uppercase tracking-wide mt-8">Software Developer</h3>
             </div>
 
             <div className="flex justify-center">
