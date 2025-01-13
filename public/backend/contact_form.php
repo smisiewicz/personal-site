@@ -2,7 +2,7 @@
 // contact_form.php
 
 // Allow cross-origin requests from React frontend (useful during development)
-// header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // Check if the request method is POST

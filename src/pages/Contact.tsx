@@ -77,12 +77,7 @@ const Contact = () => {
             }
 
             try {
-                const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data, {
-                    headers: {
-                        'Content-Type': 'application/json',
-                        Accept: 'application/json',
-                    },
-                })
+                const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data)
 
                 setStatus({ success: response.status === 200, message: response.data.message || response.data.error })
 
