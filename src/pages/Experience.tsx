@@ -1,8 +1,22 @@
+import React, { ReactNode } from 'react'
+
+interface XLProps {
+    children: ReactNode
+}
+
+const XL: React.FC<XLProps> = ({ children }) => {
+    return <span className="text-2xl">{children}</span>
+}
+
 const experiences = [
     {
         date: 'Jan 2020 - Present',
         title: 'Senior Software Developer',
-        company: 'Secure Co, Inc.',
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
         highlights: [
             <p>
                 Architected and developed native client VPN solutions for iOS, MacOS (Swift/SwiftUI) and Android (Java).
@@ -23,11 +37,15 @@ const experiences = [
     {
         date: 'Oct 2018 - Jan 2020',
         title: 'Senior Software Developer',
-        company: 'Peerstream, Inc.',
+        company: (
+            <p>
+                <XL>P</XL>eer<XL>S</XL>tream, <XL>I</XL>nc.
+            </p>
+        ),
         highlights: [
             <p>
-                Architected and developed <b className="text-secondary mx-0.5">Backchannel</b> client, targeting both
-                Android and iOS (React Native).
+                Architected and developed <b className="text-dark_secondary mx-0.5">Backchannel</b> client, targeting
+                both Android and iOS (React Native).
             </p>,
             <p>Created automated build distribution pipelines for each platform.</p>,
             <p>Built video calling and audio push-to-talk UX (1:1).</p>,
@@ -49,13 +67,17 @@ const experiences = [
     {
         date: 'May 2013 - Oct 2018',
         title: 'Senior iOS Developer',
-        company: 'Peerstream, Inc.',
+        company: (
+            <p>
+                <XL>P</XL>eer<XL>S</XL>tream, <XL>I</XL>nc.
+            </p>
+        ),
         description: (
             <p>
                 I delivered and maintained two major apps, from initial setup to app store submission:{' '}
-                <b className="text-secondary mx-0.5">Firetalk</b> and{' '}
-                <b className="text-secondary mx-0.5">Pack - Live Group Video Chat</b>. Primarily written in Swift with
-                additional bridged Obj-C components:
+                <b className="text-dark_secondary mx-0.5">Firetalk</b> and{' '}
+                <b className="text-dark_secondary mx-0.5">Pack - Live Group Video Chat</b>. Primarily written in Swift
+                with additional bridged Obj-C components:
             </p>
         ),
         highlights: [
@@ -88,7 +110,11 @@ const experiences = [
     {
         date: 'Apr 2011 - May 2013',
         title: 'iOS Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         description: (
             <p>
                 Worked on various UX and engine elements within Paltalk iOS app. The original app dates back to pre-ARC
@@ -99,17 +125,25 @@ const experiences = [
     {
         date: 'Mar 2010 - Apr 2011',
         title: 'Android Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         description: <p>Worked on various UX and engine elements within Paltalk Android app.</p>,
     },
     {
         date: 'Aug 2007 - Mar 2010',
         title: 'Web/RIA Developer',
-        company: 'Paltalk (AVM Software Inc.)',
+        company: (
+            <p>
+                <XL>P</XL>altalk (<XL>AVM S</XL>oftware <XL>I</XL>nc.)
+            </p>
+        ),
         highlights: [
             <p>
-                Co-developed <b className="text-secondary mx-0.5">Paltalk Express</b>: a lightweight web-based version
-                of Paltalk client.
+                Co-developed <b className="text-dark_secondary mx-0.5">Paltalk Express</b>: a lightweight web-based
+                version of Paltalk client.
             </p>,
             <p>Developed various web flash widgets for marketing campaigns.</p>,
         ],
@@ -121,7 +155,7 @@ const Experience = () => {
         <div className="w-full flex justify-center items-center">
             <div className="relative max-w-5xl w-full md:my-5">
                 {/* line */}
-                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-primary"></div>
+                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2 w-px h-full bg-dark_primary"></div>
 
                 {/* content */}
                 <div className="space-y-6 md:space-y-16">
@@ -133,26 +167,32 @@ const Experience = () => {
                             {/* position left or right, or center for smaller screen sizes */}
                             <div className={`flex w-full md:w-1/2 md:justify-${index % 2 === 0 ? 'end' : 'start'}`}>
                                 <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
-                                    <div className="w-6 h-6 bg-primary rounded-full border-4 border-gray-900"></div>
+                                    <div className="w-6 h-6 bg-dark_primary rounded-full border-4 border-gray-900"></div>
                                 </div>
 
                                 <div
-                                    className={`bg-darkcard w-full shadow-md rounded-lg p-6 md:mt-1 ${
+                                    className={`bg-dark_card w-full shadow-md rounded-lg p-6 pb-10 md:mt-1 ${
                                         index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
                                     }`}
                                 >
-                                    <p className="text-sm font-bold text-primary uppercase mb-3">{experience.date}</p>
-                                    <p className="text-xl text-lightgray font-light uppercase tracking-wider mb-3">
-                                        {experience.company}
+                                    <p className="text-sm font-bold text-dark_primary uppercase mb-3">
+                                        {experience.date}
                                     </p>
+                                    <div className="text-xl font-light uppercase tracking-wider mb-3">
+                                        {experience.company}
+                                    </div>
 
-                                    <p className="text-lightgray font-bold mb-1">{experience.title}</p>
+                                    <div className="h-px w-full bg-dark_border my-5" />
+
+                                    <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
 
                                     {experience.description && (
-                                        <div className="text-lightgray font-light">{experience.description}</div>
+                                        <div className="text-dark_text_primary font-light">
+                                            {experience.description}
+                                        </div>
                                     )}
 
-                                    <ul className="text-lightgray font-light list-disc pl-4">
+                                    <ul className="text-dark_text_primary font-light list-disc pl-4">
                                         {experience.highlights &&
                                             experience.highlights.map((item, index) => (
                                                 <li key={index} className="mt-1">

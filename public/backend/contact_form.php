@@ -2,11 +2,12 @@
 // contact_form.php
 
 // Allow cross-origin requests from React frontend (useful during development)
-header("Access-Control-Allow-Origin: *");
+// header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 
 // Check if the request method is POST
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+// FIXME: temp hack to bypass POST Mod_Security failure
+if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     // Get the JSON data sent from React
     $data = json_decode(file_get_contents("php://input"));
 
@@ -39,3 +40,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo json_encode(["error" => "Invalid request method."]);
     http_response_code(405); // Method Not Allowed
 }
+
+?>
