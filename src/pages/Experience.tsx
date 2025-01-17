@@ -1,5 +1,7 @@
 import React, { ReactNode } from 'react'
 
+import { motion } from 'motion/react'
+
 interface XLProps {
     children: ReactNode
 }
@@ -159,51 +161,62 @@ const Experience = () => {
 
                 {/* content */}
                 <div className="space-y-6 md:space-y-16">
-                    {experiences.map((experience, index) => (
-                        <div
-                            key={index}
-                            className={`flex items-center ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}
-                        >
-                            {/* position left or right, or center for smaller screen sizes */}
-                            <div className={`flex w-full md:w-1/2 md:justify-${index % 2 === 0 ? 'end' : 'start'}`}>
-                                <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
-                                    <div className="w-6 h-6 bg-dark_primary rounded-full border-4 border-gray-900"></div>
-                                </div>
+                    {experiences.map((experience, index) => {
+                        const delay = index < 2 ? index * 0.2 : 0
 
-                                <div
-                                    className={`bg-dark_card w-full shadow-md rounded-lg p-6 pb-10 md:mt-1 ${
-                                        index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
-                                    }`}
-                                >
-                                    <p className="text-sm font-bold text-dark_primary uppercase mb-3">
-                                        {experience.date}
-                                    </p>
-                                    <div className="text-xl font-light uppercase tracking-wider mb-3">
-                                        {experience.company}
+                        return (
+                            <div
+                                key={index}
+                                className={`flex items-center ${index % 2 === 0 ? 'flex-row-reverse' : 'flex-row'}`}
+                            >
+                                {/* position left or right, or center for smaller screen sizes */}
+                                <div className={`flex w-full md:w-1/2 md:justify-${index % 2 === 0 ? 'end' : 'start'}`}>
+                                    <div className="hidden md:flex absolute left-1/2 transform -translate-x-1/2">
+                                        <div className="w-6 h-6 bg-dark_primary rounded-full border-4 border-gray-900"></div>
                                     </div>
 
-                                    <div className="h-px w-full bg-dark_border my-5" />
-
-                                    <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
-
-                                    {experience.description && (
-                                        <div className="text-dark_text_primary font-light">
-                                            {experience.description}
+                                    <motion.div
+                                        initial={{ opacity: 0, scale: 0.96, x: index % 2 === 0 ? 20 : -20 }}
+                                        whileInView={{ opacity: 1, scale: 1, x: 0 }}
+                                        transition={{
+                                            opacity: { duration: 0.7, delay },
+                                            scale: { type: 'spring', visualDuration: 0.7, bounce: 0.2, delay },
+                                            x: { type: 'spring', visualDuration: 0.7, bounce: 0.2, delay },
+                                        }}
+                                        className={`bg-dark_card w-full shadow-md rounded-lg p-6 pb-10 md:mt-1 ${
+                                            index % 2 === 0 ? 'md:ml-8' : 'md:mr-8'
+                                        }`}
+                                    >
+                                        <p className="text-sm font-bold text-dark_primary uppercase mb-3">
+                                            {experience.date}
+                                        </p>
+                                        <div className="text-xl font-light uppercase tracking-wider mb-3">
+                                            {experience.company}
                                         </div>
-                                    )}
 
-                                    <ul className="text-dark_text_primary font-light list-disc pl-4">
-                                        {experience.highlights &&
-                                            experience.highlights.map((item, index) => (
-                                                <li key={index} className="mt-1">
-                                                    {item}
-                                                </li>
-                                            ))}
-                                    </ul>
+                                        <div className="h-px w-full bg-dark_border my-5" />
+
+                                        <p className="text-dark_text_primary font-bold mb-1">{experience.title}</p>
+
+                                        {experience.description && (
+                                            <div className="text-dark_text_primary font-light">
+                                                {experience.description}
+                                            </div>
+                                        )}
+
+                                        <ul className="text-dark_text_primary font-light list-disc pl-4">
+                                            {experience.highlights &&
+                                                experience.highlights.map((item, index) => (
+                                                    <li key={index} className="mt-1">
+                                                        {item}
+                                                    </li>
+                                                ))}
+                                        </ul>
+                                    </motion.div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        )
+                    })}
                 </div>
             </div>
         </div>
