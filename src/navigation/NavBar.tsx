@@ -52,25 +52,27 @@ const NavBar = () => {
             className={`z-50 ${isFixed ? 'md:fixed md:top-0 md:-left-5 md:-right-5' : 'md:absolute md:top-6 md:left-0 md:right-0'} md:flex justify-center font-normal`}
         >
             <div
-                className={`hidden md:flex bg-dark_card border-dark_border ${isFixed ? 'border-b w-full py-3' : 'border w-11/12 lg:w-5/6 xl:w-3/4 rounded-full'} justify-center transition-all duration-300 text-sm px-3.5`}
+                className={`hidden md:flex bg-dark_card border-dark_border ${isFixed ? 'border-b w-full' : 'border w-11/12 lg:w-5/6 xl:w-3/4 rounded-full'} justify-center transition-all duration-300 text-sm px-3.5`}
             >
-                <div className="flex justify-between space-x-4">
-                    <NavLink to="/">
+                <div
+                    className={`flex justify-between items-center space-x-4 transition-all duration-300 ${isFixed ? '' : ''}`}
+                >
+                    <NavLink to="/" hasFixedBar={isFixed}>
                         <span>About</span>
                     </NavLink>
-                    <NavLink to="/experience">
+                    <NavLink to="/experience" hasFixedBar={isFixed}>
                         <span>Experience</span>
                     </NavLink>
-                    <NavLink to="/projects">
+                    <NavLink to="/projects" hasFixedBar={isFixed}>
                         <span>Projects</span>
                     </NavLink>
-                    <NavLink onClick={downloadResume}>
+                    <NavLink onClick={downloadResume} hasFixedBar={isFixed}>
                         <span className="flex justify-center items-center space-x-1.5">
                             <PiDownloadSimpleThin className="text-xl" />
                             <span>Resume</span>
                         </span>
                     </NavLink>
-                    <NavLink to="/contact">
+                    <NavLink to="/contact" hasFixedBar={isFixed}>
                         <span>Contact</span>
                     </NavLink>
                 </div>

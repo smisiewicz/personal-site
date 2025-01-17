@@ -7,15 +7,16 @@ interface NavLinkProps {
 
     children?: React.ReactNode
     className?: string | undefined
+
+    hasFixedBar?: boolean
 }
 
 const NavLink = (props: NavLinkProps) => {
-    const { to, onClick, children, className } = props
+    const { to, onClick, children, className, hasFixedBar } = props
     const location = useLocation()
 
     let linkClassName = className ? `${className} ` : ''
-    linkClassName +=
-        'py-2.5 md:py-4 px-5 hover:text-dark_primary transition-all duration-300 uppercase font-light tracking-wide relative'
+    linkClassName += `py-2.5 ${hasFixedBar ? 'md:py-6' : 'md:py-4'} px-5 hover:text-dark_primary transition-all duration-300 uppercase font-light tracking-wide relative`
 
     if (location.pathname === to) {
         linkClassName += ' text-dark_primary'
@@ -28,13 +29,6 @@ const NavLink = (props: NavLinkProps) => {
         return (
             <button className={linkClassName} onClick={onClick}>
                 {children}
-
-                {location.pathname === to && (
-                    <>
-                        <div className={`${borderClassName} opacity-65 top-full`} />
-                        <div className={`${borderClassName} opacity-35 bottom-full`} />
-                    </>
-                )}
             </button>
         )
     }
@@ -45,8 +39,12 @@ const NavLink = (props: NavLinkProps) => {
 
             {location.pathname === to && (
                 <>
-                    <div className={`${borderClassName} opacity-65 top-full`} />
-                    <div className={`${borderClassName} opacity-35 bottom-full`} />
+                    <div
+                        className={`${borderClassName} transition-all duration-300 opacity-55 ${hasFixedBar ? 'top-1/4' : '-top-px'}`}
+                    />
+                    <div
+                        className={`${borderClassName} transition-all duration-300 opacity-65 ${hasFixedBar ? 'bottom-1/4' : '-bottom-px'}`}
+                    />
                 </>
             )}
         </Link>
