@@ -7,7 +7,7 @@ header("Content-Type: application/json; charset=UTF-8");
 
 // Check if the request method is POST
 // FIXME: temp hack to bypass POST Mod_Security failure
-if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Get the JSON data sent from React
     $data = json_decode(file_get_contents("php://input"));
 

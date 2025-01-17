@@ -77,7 +77,7 @@ const Contact = () => {
             }
 
             try {
-                const response = await axios.put('https://misiewicz.info/backend/contact_form.php', data)
+                const response = await axios.post('https://misiewicz.info/backend/contact_form.php', data)
 
                 setStatus({ success: response.status === 200, message: response.data.message || response.data.error })
 
