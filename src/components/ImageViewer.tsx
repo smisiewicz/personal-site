@@ -47,7 +47,7 @@ const ImageViewer: React.FC<ImageViewerProps> = ({ images, onClose }) => {
                 className="absolute right-4 top-1/2 transform -translate-y-1/2 p-4 bg-dark_button_bg_transparent border border-dark_button_border_transparent rounded-full text-white"
                 onClick={goForward}
             >
-                <PiArrowRightThin className="text-4xl lg:text-5xl" />
+                <PiArrowRightThin className="text-4xl lg:text-4xl" />
             </button>
 
             <img
