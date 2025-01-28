@@ -5,6 +5,7 @@ import img_thumb_macos from '../assets/img-thumb-macos.jpg'
 import img_thumb_android from '../assets/img-thumb-android.jpg'
 import img_thumb_simulator from '../assets/img-thumb-simulator.jpg'
 import img_thumb_firetalk from '../assets/img-thumb-firetalk.jpg'
+import img_thumb_portal from '../assets/img-thumb-admin-portal.jpg'
 
 import img_firetalk_1 from '../assets/img-firetalk-1.png'
 import img_firetalk_2 from '../assets/img-firetalk-2.png'
@@ -97,6 +98,22 @@ const videos: Video[] = [
         ),
         thumbnail: img_thumb_simulator,
         videoUrl: 'https://www.youtube.com/embed/bddTjAx_l44',
+    },
+    {
+        company: (
+            <p>
+                <XL>S</XL>ecure<XL>C</XL>o, <XL>I</XL>nc.
+            </p>
+        ),
+        title: <p>Customer Portal Demo</p>,
+        subtitle: (
+            <p>
+                A customer portal was designed with flexibility in mind, giving users full control over their entire
+                organization as far as managing licenses, endpoints, groups, users, policies and suborganizations.
+            </p>
+        ),
+        thumbnail: img_thumb_portal,
+        videoUrl: 'https://www.youtube.com/embed/E991YEpPX2o',
     },
     {
         company: (
