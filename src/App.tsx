@@ -3,6 +3,28 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import { Contact, Experience, Home, NotFound, Projects } from './pages'
 import { Footer, NavBar } from './navigation'
 
+// Import the functions you need from the SDKs you need
+import { initializeApp } from 'firebase/app'
+import { getAnalytics } from 'firebase/analytics'
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+const firebaseConfig = {
+    apiKey: 'AIzaSyCfCCbz9B_QNHPI2jsOj9d8LF03nbcavis',
+    authDomain: 'testapp-6d6d3.firebaseapp.com',
+    projectId: 'testapp-6d6d3',
+    storageBucket: 'testapp-6d6d3.firebasestorage.app',
+    messagingSenderId: '611605371813',
+    appId: '1:611605371813:web:109547bf18aab3c248a64c',
+    measurementId: 'G-JFVPR09DQT',
+}
+
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+getAnalytics(app)
+
 function App() {
     return (
         <Router>
