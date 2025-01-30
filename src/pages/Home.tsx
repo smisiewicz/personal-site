@@ -1,12 +1,19 @@
 import portrait from '../assets/img-bg-portrait.jpeg'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { FaGithub, FaLinkedin } from 'react-icons/fa'
+
+import { getAnalytics, logEvent } from 'firebase/analytics'
 
 import { Spinner } from '../components'
 
 const Home = () => {
     const [isPortraitLoaded, setIsPortraitLoaded] = useState(false)
+
+    useEffect(() => {
+        const analytics = getAnalytics()
+        logEvent(analytics, 'page_loaded_home')
+    })
 
     return (
         <div className="flex flex-col items-center">
