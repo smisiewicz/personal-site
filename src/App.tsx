@@ -18,11 +18,11 @@ const firebaseConfig = {
     measurementId: 'G-JFVPR09DQT',
 }
 
+// Initialize Firebase
+const app = initializeApp(firebaseConfig)
+getAnalytics(app)
+
 function App() {
-    // Initialize Firebase
-    const app = initializeApp(firebaseConfig)
-    getAnalytics(app)
-    
     return (
         <Router>
             <div className="flex flex-col min-h-screen">
