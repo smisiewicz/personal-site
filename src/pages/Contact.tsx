@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+
+import { getAnalytics, logEvent } from 'firebase/analytics'
 
 import qrCode from '../assets/contact-form-qr.svg'
 
@@ -25,6 +27,11 @@ interface ValidationErrors {
 const Contact = () => {
     const [isQrLoaded, setIsQrLoaded] = useState(false)
     const [isProcessing, setIsProcessing] = useState(false)
+
+    useEffect(() => {
+        const analytics = getAnalytics()
+        logEvent(analytics, 'page_loaded_contact')
+    })
 
     const [formData, setFormData] = useState<FormData>({
         name: '',

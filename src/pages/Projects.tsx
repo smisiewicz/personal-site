@@ -1,4 +1,6 @@
-import React, { ReactNode, useState } from 'react'
+import React, { ReactNode, useEffect, useState } from 'react'
+
+import { getAnalytics, logEvent } from 'firebase/analytics'
 
 import img_thumb_ios from '../assets/img-thumb-ios.jpg'
 import img_thumb_macos from '../assets/img-thumb-macos.jpg'
@@ -179,6 +181,11 @@ const Projects = () => {
             setSelectedImages(video.images)
         }
     }
+
+    useEffect(() => {
+        const analytics = getAnalytics()
+        logEvent(analytics, 'page_loaded_projects')
+    })
 
     return (
         <div className="w-full flex justify-center items-center">

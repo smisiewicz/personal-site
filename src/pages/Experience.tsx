@@ -1,4 +1,6 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
+
+import { getAnalytics, logEvent } from 'firebase/analytics'
 
 import { motion } from 'motion/react'
 
@@ -153,6 +155,11 @@ const experiences = [
 ]
 
 const Experience = () => {
+    useEffect(() => {
+        const analytics = getAnalytics()
+        logEvent(analytics, 'page_loaded_experience')
+    })
+
     return (
         <div className="w-full flex justify-center items-center">
             <div className="relative max-w-5xl w-full md:my-5">
