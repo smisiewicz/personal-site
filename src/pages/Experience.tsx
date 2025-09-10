@@ -14,7 +14,27 @@ const XL: React.FC<XLProps> = ({ children }) => {
 
 const experiences = [
     {
-        date: 'Jan 2020 - Present',
+        date: 'Apr 2025 - Present',
+        title: 'Front-end Staff Engineer',
+        company: (
+            <p>
+                <XL>P</XL>rophet<XL>X</XL>
+            </p>
+        ),
+        highlights: [
+            <p>
+                Developed robust React Native mobile application features, delivering high-performance parlay betting
+                experience with real-time data synchronization and intelligent API management for seamless user
+                interactions.
+            </p>,
+            <p>
+                Diagnosed and resolved data integration issues through payload analysis, ensuring reliable data flow and
+                a consistent user experience across different market types.
+            </p>,
+        ],
+    },
+    {
+        date: 'Jan 2020 - Mar 2025',
         title: 'Senior Software Developer',
         company: (
             <p>
