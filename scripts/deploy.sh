@@ -12,11 +12,14 @@ ssh -t "${REMOTE_USER}@${REMOTE_HOST}" "
   # Navigate to the target directory
   cd ${REMOTE_DIR} || exit 1
 
-  # Remove files but not in cgi-bin and .well-known
-find . ! -path './cgi-bin*' ! -path './.well-known*' ! -name '.' ! -name '..' -type f -exec rm -f {} \; 2>/dev/null
+  # website_eb2e44aa is the document root of smpsychotherapy.com, a separate site that lives inside
+  # this folder. It must never be touched by this deploy.
 
-# Remove directories but not in cgi-bin and .well-known
-find . ! -path './cgi-bin*' ! -path './.well-known*' ! -name '.' ! -name '..' -type d -exec rm -rf {} \; 2>/dev/null
+  # Remove files but not in cgi-bin, .well-known or website_eb2e44aa
+find . ! -path './cgi-bin*' ! -path './.well-known*' ! -path './website_eb2e44aa*' ! -name '.' ! -name '..' -type f -exec rm -f {} \; 2>/dev/null
+
+# Remove directories but not in cgi-bin, .well-known or website_eb2e44aa
+find . ! -path './cgi-bin*' ! -path './.well-known*' ! -path './website_eb2e44aa*' ! -name '.' ! -name '..' -type d -exec rm -rf {} \; 2>/dev/null
 "
 
 # Check if SSH command was successful
