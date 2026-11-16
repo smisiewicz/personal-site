@@ -80,7 +80,7 @@ export default function HudTopBar(): React.JSX.Element {
   };
 
   return (
-    <header className="hud-bar fixed inset-x-0 top-0 z-30 flex h-16 items-start gap-4 px-4 pt-3 md:gap-6 md:px-7">
+    <header className="hud-enter hud-enter-top hud-bar fixed inset-x-0 top-0 z-30 flex h-16 items-start gap-4 px-4 pt-3 md:gap-6 md:px-7">
       <button
         type="button"
         onClick={() => navigate(ROOT_FOCUS)}

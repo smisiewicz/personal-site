@@ -20,11 +20,34 @@ import { navigate, navigateStep, navigateUp } from '@/lib/hive/navigate';
 import { drawScene } from '@/lib/hive/render/drawScene';
 import { PORTRAIT_SRC } from '@/lib/hive/render/drawSection';
 import { playSound } from '@/lib/sound';
-import { getHiveState } from '@/stores/useHiveStore';
+import { getHiveState, setHiveState } from '@/stores/useHiveStore';
 
 const ITEM_COUNTS = { experience: experiences.length, projects: projects.length };
 const TAP_SLOP = 10;
 const SWIPE_DISTANCE = 56;
+const ENTRANCE_SESSION_KEY = 'hive-entrance-seen';
+const ENTRANCE_FULL_S = 2;
+const ENTRANCE_SHORT_S = 0.7;
+const ENTRANCE_SKIP_S = 0.35;
+/** The HUD fades in once the ignition is this far along. */
+const HUD_REVEAL_AT = 0.78;
+
+// Decided once per page load (not per effect run, which React repeats in development).
+let entranceDuration: number | null = null;
+
+/** Full ignition on the first visit of a browser session, a brief one after that. */
+function resolveEntranceDuration(): number {
+  if (entranceDuration !== null) return entranceDuration;
+  let seen = false;
+  try {
+    seen = window.sessionStorage.getItem(ENTRANCE_SESSION_KEY) === '1';
+    window.sessionStorage.setItem(ENTRANCE_SESSION_KEY, '1');
+  } catch {
+    // Without session storage the full entrance simply plays on every load.
+  }
+  entranceDuration = seen ? ENTRANCE_SHORT_S : ENTRANCE_FULL_S;
+  return entranceDuration;
+}
 
 function loadImages(engine: HiveEngine): void {
   [PORTRAIT_SRC, ...projects.map((project) => project.thumbnail)].forEach((src) => {
@@ -65,6 +88,8 @@ export default function HiveCanvas(): React.JSX.Element {
     const engine = createEngine(buildLayout(isPortrait(), ITEM_COUNTS), reducedMotion, coarsePointer ? 5 : 11);
     loadImages(engine);
     loadFonts(engine);
+    engine.bootDuration = resolveEntranceDuration();
+    if (!reducedMotion && engine.bootDuration === ENTRANCE_FULL_S) playSound('boot');
 
     const resize = (): void => {
       engine.vw = window.innerWidth;
@@ -80,7 +105,7 @@ export default function HiveCanvas(): React.JSX.Element {
     resize();
     snapCamera(engine, getHiveState().focus);
     // Start slightly pulled back so the first frames ease into place.
-    engine.pose.zoom *= 0.82;
+    engine.pose.zoom *= 0.86;
 
     let frame = 0;
     let last = performance.now();
@@ -89,7 +114,8 @@ export default function HiveCanvas(): React.JSX.Element {
       const dt = Math.min((now - last) / 1000, 0.05);
       last = now;
       const { focus, booted } = getHiveState();
-      stepEngine(engine, dt, focus, booted);
+      stepEngine(engine, dt, focus);
+      if (!booted && engine.boot >= HUD_REVEAL_AT) setHiveState({ booted: true });
       drawScene(ctx, engine);
 
       const interactive = isInteractive(engine.hover, focus);
@@ -132,6 +158,11 @@ export default function HiveCanvas(): React.JSX.Element {
       }
     };
 
+    // Any click or key press during the ignition fast-forwards it.
+    const skipEntrance = (): void => {
+      if (engine.boot < 1) engine.bootDuration = ENTRANCE_SKIP_S;
+    };
+
     let downX = 0;
     let downY = 0;
     const handleDown = (event: PointerEvent): void => {
@@ -149,6 +180,8 @@ export default function HiveCanvas(): React.JSX.Element {
     };
 
     window.addEventListener('resize', resize);
+    window.addEventListener('pointerdown', skipEntrance);
+    window.addEventListener('keydown', skipEntrance);
     window.addEventListener('pointermove', handleMove);
     document.documentElement.addEventListener('pointerleave', handleLeave);
     canvas.addEventListener('pointerdown', handleDown);
@@ -157,6 +190,8 @@ export default function HiveCanvas(): React.JSX.Element {
     return (): void => {
       cancelAnimationFrame(frame);
       window.removeEventListener('resize', resize);
+      window.removeEventListener('pointerdown', skipEntrance);
+      window.removeEventListener('keydown', skipEntrance);
       window.removeEventListener('pointermove', handleMove);
       document.documentElement.removeEventListener('pointerleave', handleLeave);
       canvas.removeEventListener('pointerdown', handleDown);

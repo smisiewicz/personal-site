@@ -140,14 +140,16 @@ export function drawSectionCell(ctx: Ctx, engine: HiveEngine, cell: HiveCell): v
 
   setScreen(ctx, engine);
   traceHex(ctx, engine, cell.x, cell.y, cell.radius * scale, cell.orientation, z);
-  ctx.fillStyle = cellFill(0.38 + lift * 0.3);
+  ctx.fillStyle = cellFill((0.38 + lift * 0.3) * reveal);
   ctx.fill();
   if (lift > 0.02) {
     ctx.fillStyle = accent(lift * 0.05);
     ctx.fill();
   }
   if (reveal < 1) ctx.setLineDash([perimeter * reveal, perimeter]);
-  glowStroke(ctx, (0.62 + lift * 0.38) * reveal * (0.45 + 0.55 * recede), 1.6 + lift * 1.6, lift);
+  // During the ignition the border is traced white-hot, then cools.
+  const heat = Math.max(lift, 1 - reveal);
+  glowStroke(ctx, (0.62 + lift * 0.38) * (0.5 + 0.5 * reveal) * (0.45 + 0.55 * recede), 1.6 + heat * 1.6, heat);
   ctx.setLineDash([]);
   if (reveal >= 1 && !engine.reducedMotion) {
     strokeChaser(ctx, perimeter, engine.time * 0.09 + cell.seed * 0.25, 0.55 + lift * 0.45, 2, lift);

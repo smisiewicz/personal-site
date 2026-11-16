@@ -7,7 +7,7 @@ import type { Focus } from '@/types';
 
 export interface HiveState {
   focus: Focus;
-  /** False while the boot sequence is playing. */
+  /** False until the opening ignition is far enough along for the HUD and panels to appear. */
   booted: boolean;
   soundOn: boolean;
   /** A video or gallery modal is open, so hive navigation input must be ignored. */

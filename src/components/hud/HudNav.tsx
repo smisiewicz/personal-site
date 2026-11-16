@@ -36,7 +36,7 @@ export default function HudNav(): React.JSX.Element {
     <>
       <nav
         aria-label="Sections"
-        className="hive-chip fixed left-4 top-1/2 z-30 -translate-y-1/2 bg-hive-bg/75 py-3 pl-3 pr-2 backdrop-blur-sm max-lg:sr-only lg:left-5"
+        className="hud-enter hud-enter-left hive-chip fixed left-4 top-1/2 z-30 -translate-y-1/2 bg-hive-bg/75 py-3 pl-3 pr-2 backdrop-blur-sm max-lg:sr-only lg:left-5"
       >
         <ul className="space-y-1 border-l border-hive-line">
           {ENTRIES.map((entry) => {
@@ -82,7 +82,7 @@ export default function HudNav(): React.JSX.Element {
       {/* Phones: same destinations as a tab bar. Hidden from assistive tech because the list above covers it. */}
       <div
         aria-hidden="true"
-        className="hud-bar-bottom fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-4 lg:hidden"
+        className="hud-enter hud-enter-bottom hud-bar-bottom fixed inset-x-0 bottom-0 z-30 grid grid-cols-5 px-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] pt-4 lg:hidden"
       >
         {ENTRIES.map((entry) => {
           const active = isActive(entry, focus);

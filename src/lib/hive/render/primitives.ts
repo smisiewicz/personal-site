@@ -74,12 +74,24 @@ export function isOnScreen(engine: HiveEngine, centre: Projected, radiusPx: numb
   );
 }
 
-/** 0..1 draw-in progress for a cell during boot: cells nearer the hive centre appear first. */
+/** How far (in world units) the ignition wavefront has travelled from the hive centre. */
+export function ignitionFront(engine: HiveEngine): number {
+  return engine.boot * 2300;
+}
+
+export function distanceFromCentre(engine: HiveEngine, x: number, y: number): number {
+  const { minX, maxX, minY, maxY } = engine.layout.bounds;
+  return Math.hypot(x - (minX + maxX) / 2, y - (minY + maxY) / 2);
+}
+
+/**
+ * 0..1 reveal of a cell during the opening ignition. Background cells light up in the wake of the
+ * wavefront; the four section cells are traced afterwards, one after another, as the finale.
+ */
 export function bootReveal(engine: HiveEngine, cell: HiveCell): number {
   if (engine.boot >= 1) return 1;
-  const { minX, maxX, minY, maxY } = engine.layout.bounds;
-  const distance = Math.hypot(cell.x - (minX + maxX) / 2, cell.y - (minY + maxY) / 2);
-  return clamp((engine.boot - Math.min(0.6, distance / 4200)) / 0.4, 0, 1);
+  if (cell.kind === 'section') return clamp((engine.boot - 0.46 - cell.seed * 0.045) / 0.3, 0, 1);
+  return clamp((ignitionFront(engine) - distanceFromCentre(engine, cell.x, cell.y)) / 520, 0, 1);
 }
 
 interface TextStyle {

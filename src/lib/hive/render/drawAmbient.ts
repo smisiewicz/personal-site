@@ -145,9 +145,9 @@ export function drawDecoCell(ctx: Ctx, engine: HiveEngine, cell: HiveCell): void
     ctx.fillStyle = cyan(0.045 * lift);
     ctx.fill();
   }
-  if (reveal < 1) ctx.setLineDash([radiusPx * 6 * reveal, radiusPx * 6]);
-  glowStroke(ctx, (base + lift * 0.45) * reveal, 1);
-  ctx.setLineDash([]);
+  // Freshly lit cells are still hot from the wavefront and cool to their resting cyan.
+  const heat = reveal < 1 ? 1 - reveal : 0;
+  glowStroke(ctx, (base + lift * 0.45 + heat * 0.3) * reveal, 1, heat * 0.7);
 
   if (radiusPx > 70 && reveal >= 1) {
     setLocal(ctx, engine, centre);

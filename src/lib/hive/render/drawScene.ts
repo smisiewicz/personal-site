@@ -2,6 +2,7 @@ import type { HiveEngine } from '../engine';
 import { deep } from '../palette';
 
 import { drawBackdrop, drawDecoCell, drawPings, drawRunners } from './drawAmbient';
+import { drawIgnition } from './drawIgnition';
 import { drawSectionCell } from './drawSection';
 import { setScreen, type Ctx } from './primitives';
 
@@ -12,6 +13,7 @@ export function drawScene(ctx: Ctx, engine: HiveEngine): void {
 
   drawBackdrop(ctx, engine);
   engine.layout.deco.forEach((cell) => drawDecoCell(ctx, engine, cell));
+  drawIgnition(ctx, engine);
   drawRunners(ctx, engine);
   Object.values(engine.layout.sections).forEach((cell) => drawSectionCell(ctx, engine, cell));
   drawPings(ctx, engine);

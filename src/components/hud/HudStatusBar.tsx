@@ -40,7 +40,7 @@ export default function HudStatusBar(): React.JSX.Element {
   else if (focus.section !== null) hint = 'Select a node · Esc to return';
 
   return (
-    <footer className="hud-bar-bottom fixed inset-x-0 bottom-0 z-30 flex h-14 items-end justify-between gap-6 px-7 pb-3 max-lg:hidden">
+    <footer className="hud-enter hud-enter-bottom hud-bar-bottom fixed inset-x-0 bottom-0 z-30 flex h-14 items-end justify-between gap-6 px-7 pb-3 max-lg:hidden">
       <p className="font-mono text-[11px] uppercase tracking-[0.22em] text-hive-muted">
         <span aria-hidden="true" className="hud-blink mr-2 text-hive-cyan">
           ▮

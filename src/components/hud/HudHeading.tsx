@@ -9,7 +9,8 @@ import { useHiveState } from '@/stores/useHiveStore';
 /** Title shown while the camera is inside a hub section, where the cell's own label has faded out. */
 export default function HudHeading(): React.JSX.Element {
   const focus = useHiveState((state) => state.focus);
-  const section = focus.item === null && isHub(focus.section) ? focus.section : null;
+  const booted = useHiveState((state) => state.booted);
+  const section = booted && focus.item === null && isHub(focus.section) ? focus.section : null;
   const meta = SECTIONS.find((entry) => entry.id === section);
 
   return (

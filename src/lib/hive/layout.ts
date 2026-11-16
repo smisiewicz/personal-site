@@ -24,6 +24,7 @@ export interface HiveCell {
 export interface EdgeGraph {
   vertices: ReadonlyArray<Point>;
   neighbours: ReadonlyArray<ReadonlyArray<number>>;
+  edges: ReadonlyArray<readonly [number, number]>;
 }
 
 export interface HiveLayout {
@@ -104,6 +105,7 @@ function buildGraph(cells: ReadonlyArray<HiveCell>): EdgeGraph {
   const neighbours: number[][] = [];
   const indexByKey = new Map<string, number>();
   const seenEdges = new Set<string>();
+  const edges: Array<readonly [number, number]> = [];
 
   const vertexIndex = (x: number, y: number): number => {
     const key = `${Math.round(x)}:${Math.round(y)}`;
@@ -124,12 +126,13 @@ function buildGraph(cells: ReadonlyArray<HiveCell>): EdgeGraph {
       const key = a < b ? `${a}|${b}` : `${b}|${a}`;
       if (seenEdges.has(key)) return;
       seenEdges.add(key);
+      edges.push([a, b]);
       neighbours[a].push(b);
       neighbours[b].push(a);
     });
   });
 
-  return { vertices, neighbours };
+  return { vertices, neighbours, edges };
 }
 
 export function buildLayout(isPortrait: boolean, counts: ItemCounts): HiveLayout {

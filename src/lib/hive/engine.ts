@@ -1,7 +1,7 @@
 import type { Focus, SectionId } from '@/types';
 
 import { createProjector, poseForFocus, type CameraPose, type Projector } from './camera';
-import { approach, HEX_UNIT, pointInPolygon, type HexOrientation } from './geometry';
+import { approach, HEX_UNIT, pointInPolygon, smoothstep, type HexOrientation } from './geometry';
 import type { HiveCell, HiveLayout } from './layout';
 import { hasPanel, isHub } from './nav';
 
@@ -47,7 +47,10 @@ export interface HiveEngine {
   /** 0..1 per section: how far the camera has moved "into" that section. */
   open: Record<SectionId, number>;
   panelBlend: number;
+  /** 0..1 progress of the opening ignition; 1 once the hive is fully lit. */
   boot: number;
+  /** Seconds the ignition takes; shortened on repeat visits and when the visitor skips it. */
+  bootDuration: number;
   time: number;
   runners: Runner[];
   pings: Ping[];
@@ -95,7 +98,8 @@ export function createEngine(layout: HiveLayout, reducedMotion: boolean, runnerC
     lifts: new Map(),
     open: { about: 0, experience: 0, projects: 0, contact: 0 },
     panelBlend: 0,
-    boot: 0,
+    boot: reducedMotion ? 1 : 0,
+    bootDuration: 2,
     time: 0,
     runners: reducedMotion ? [] : Array.from({ length: runnerCount }, () => spawnRunner(layout)),
     pings: [],
@@ -164,6 +168,9 @@ function stepCamera(engine: HiveEngine, focus: Focus, dt: number): void {
     target.y += (engine.pointerY * 22) / target.zoom;
   }
 
+  // The camera pushes in slightly while the grid ignites.
+  if (engine.boot < 1) target.zoom *= 0.86 + 0.14 * smoothstep(0, 1, engine.boot);
+
   if (engine.reducedMotion) {
     engine.pose = target;
     engine.rx = 0;
@@ -214,9 +221,9 @@ function stepLifts(engine: HiveEngine, dt: number): void {
   });
 }
 
-export function stepEngine(engine: HiveEngine, dt: number, focus: Focus, booted: boolean): void {
+export function stepEngine(engine: HiveEngine, dt: number, focus: Focus): void {
   engine.time += dt;
-  engine.boot = Math.min(1, engine.boot + dt / (booted ? 0.6 : 2.4));
+  engine.boot = Math.min(1, engine.boot + dt / engine.bootDuration);
 
   stepCamera(engine, focus, dt);
   engine.project = createProjector(engine.pose, engine.rx, engine.ry, engine.vw, engine.vh);

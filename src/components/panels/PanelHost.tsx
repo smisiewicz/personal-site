@@ -13,10 +13,12 @@ import ProjectPanel from './ProjectPanel';
 /** Shows the content panel for the focused cell, if that cell has one. */
 export default function PanelHost(): React.JSX.Element {
   const focus = useHiveState((state) => state.focus);
+  const booted = useHiveState((state) => state.booted);
   const key = focusToHash(focus);
 
   let panel: React.JSX.Element | null = null;
-  if (hasPanel(focus)) {
+  // A deep link to a panel waits for the opening ignition before the panel appears.
+  if (booted && hasPanel(focus)) {
     if (focus.section === 'about') panel = <AboutPanel key={key} />;
     else if (focus.section === 'contact') panel = <ContactPanel key={key} />;
     else if (focus.section === 'experience') panel = <ExperiencePanel key={key} index={focus.item ?? 0} />;

@@ -91,6 +91,31 @@ body {
   pointer-events: none;
 }
 
+/* HUD entrance: bars slide in from their own edge once the hive has ignited. */
+.hud-enter {
+  opacity: 0;
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.hud-enter-top {
+  transform: translateY(-14px);
+}
+
+.hud-enter-bottom {
+  transform: translateY(14px);
+}
+
+.hud-enter-left {
+  transform: translateX(-14px);
+}
+
+html[data-booted] .hud-enter {
+  opacity: 1;
+  transform: none;
+}
+
 @keyframes hud-blink {
   0%,
   100% {
@@ -165,5 +190,9 @@ body {
   .hud-sweep,
   .hud-blink {
     animation: none;
+  }
+
+  .hud-enter {
+    transition: none;
   }
 }
