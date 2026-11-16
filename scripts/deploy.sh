@@ -4,7 +4,7 @@
 REMOTE_USER="wuovhumy"
 REMOTE_HOST="misiewicz.info"
 REMOTE_DIR="/home2/wuovhumy/public_html"
-LOCAL_DIR="../dist"
+LOCAL_DIR="../out"
 
 # SSH into the remote machine and perform the cleanup
 echo "Running SSH command to cleanup old files..."

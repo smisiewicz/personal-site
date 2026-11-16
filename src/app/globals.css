@@ -1,0 +1,169 @@
+@import 'tailwindcss';
+
+@theme {
+  --color-hive-bg: #02080e;
+  --color-hive-panel: #04111a;
+  --color-hive-cyan: #40d6ff;
+  --color-hive-ice: #daf7ff;
+  --color-hive-accent: #f0fcff;
+  --color-hive-text: #bfe3ee;
+  --color-hive-muted: #6f9fb0;
+  --color-hive-line: rgba(64, 214, 255, 0.28);
+  --color-hive-error: #ff6b7d;
+  --color-hive-success: #5dffc4;
+}
+
+@theme inline {
+  --font-display: var(--font-orbitron), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-exo), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-share-tech-mono), ui-monospace, monospace;
+}
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+body {
+  font-family: var(--font-sans);
+  color: var(--color-hive-text);
+  background:
+    radial-gradient(ellipse at 50% 45%, rgba(10, 60, 84, 0.42) 0%, transparent 62%),
+    var(--color-hive-bg);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: rgba(64, 214, 255, 0.35);
+  color: #fff;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-hive-ice);
+  outline-offset: 2px;
+}
+
+/* ── HUD chrome ─────────────────────────────────────────────────────────── */
+
+.hud-bar {
+  background: linear-gradient(to bottom, rgba(2, 8, 14, 0.92), rgba(2, 8, 14, 0.55) 70%, transparent);
+}
+
+.hud-bar-bottom {
+  background: linear-gradient(to top, rgba(2, 8, 14, 0.92), rgba(2, 8, 14, 0.55) 70%, transparent);
+}
+
+.hex-clip {
+  clip-path: polygon(50% 0, 100% 25%, 100% 75%, 50% 100%, 0 75%, 0 25%);
+}
+
+.hud-scanlines {
+  background: repeating-linear-gradient(to bottom, transparent 0 3px, rgba(64, 214, 255, 0.028) 3px 4px);
+}
+
+.hud-vignette {
+  background: radial-gradient(ellipse at center, transparent 55%, rgba(0, 3, 6, 0.75) 100%);
+}
+
+.hud-sweep {
+  background: linear-gradient(to bottom, transparent, rgba(64, 214, 255, 0.07) 45%, rgba(218, 247, 255, 0.16) 50%, transparent 52%);
+  animation: hud-sweep 7s linear infinite;
+}
+
+@keyframes hud-sweep {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(100vh);
+  }
+}
+
+.hud-bracket {
+  position: fixed;
+  width: 22px;
+  height: 22px;
+  border-color: rgba(64, 214, 255, 0.65);
+  pointer-events: none;
+}
+
+@keyframes hud-blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.hud-blink {
+  animation: hud-blink 1.4s steps(2, jump-none) infinite;
+}
+
+/* ── Content panels ─────────────────────────────────────────────────────── */
+
+/* Chamfered frame: the outer element is the 1px border, the inner element the surface. */
+.hive-panel,
+.hive-panel-surface {
+  --chamfer: 22px;
+  clip-path: polygon(
+    var(--chamfer) 0,
+    calc(100% - var(--chamfer)) 0,
+    100% var(--chamfer),
+    100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%,
+    var(--chamfer) 100%,
+    0 calc(100% - var(--chamfer)),
+    0 var(--chamfer)
+  );
+}
+
+.hive-panel {
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(218, 247, 255, 0.9), rgba(64, 214, 255, 0.35) 30%, rgba(64, 214, 255, 0.18) 70%, rgba(218, 247, 255, 0.7));
+}
+
+.hive-panel-surface {
+  background:
+    linear-gradient(180deg, rgba(64, 214, 255, 0.07), transparent 120px),
+    rgba(3, 13, 20, 0.93);
+}
+
+.hive-chip {
+  --chamfer: 8px;
+  clip-path: polygon(
+    var(--chamfer) 0,
+    100% 0,
+    100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%,
+    0 100%,
+    0 var(--chamfer)
+  );
+}
+
+.hive-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(64, 214, 255, 0.4) transparent;
+}
+
+.glow-accent {
+  text-shadow: 0 0 12px rgba(64, 214, 255, 0.9);
+}
+
+.glow-text {
+  text-shadow:
+    0 0 18px rgba(64, 214, 255, 0.55),
+    0 0 42px rgba(64, 214, 255, 0.25);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hud-sweep,
+  .hud-blink {
+    animation: none;
+  }
+}
