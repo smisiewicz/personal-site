@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <svg width="456" height="456" viewBox="0 0 456 456"
 		 xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:ev="http://www.w3.org/2001/xml-events">
-<rect x="0" y="0" width="456" height="456" fill="#ffffff"/>
+<rect x="0" y="0" width="456" height="456" fill="#02080e"/>
 <defs>
 <rect id="p" width="8" height="8"/>
 </defs>
-<g fill="#000000">
+<g fill="#4de1ff">
 <use xlink:href="#p" x="32" y="32"/>
 <use xlink:href="#p" x="32" y="40"/>
 <use xlink:href="#p" x="32" y="48"/>

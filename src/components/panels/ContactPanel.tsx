@@ -91,11 +91,17 @@ export default function ContactPanel(): React.JSX.Element {
 
         <div className="w-px shrink-0 bg-hive-line max-md:hidden" />
 
-        {/* mailto:s.p.misiewicz@pm.me?subject=misiewicz.info%20-%20Personal%20Site%20Contact%20Form */}
+        {/* The code encodes: mailto:contact@misiewicz.info?subject=misiewicz.info%20-%20Personal%20Site%20Contact%20Form */}
         <div className="flex w-64 shrink-0 flex-col items-center justify-center max-md:hidden">
-          <div className="hive-chip border border-hive-line bg-white p-2">
+          {/* Neon cyan modules on the page's dark navy. The padding keeps a dark quiet zone around the
+              code, which inverted codes need even more than regular ones. */}
+          <div className="w-full border border-hive-cyan/60 bg-hive-bg p-3">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/assets/images/contact-form-qr.svg" alt="QR code that opens an email to Sebastian" className="w-full" />
+            <img
+              src="/assets/images/contact-form-qr.svg"
+              alt="QR code that opens an email to Sebastian"
+              className="w-full"
+            />
           </div>
           <p className="mt-3 text-center font-mono text-[11px] uppercase tracking-[0.2em] text-hive-muted">
             Scan to email from mobile
